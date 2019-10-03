@@ -1,0 +1,64 @@
+{
+    "name": "n8n-nodes-starter",
+    "version": "0.1.0",
+    "description": "Example starter module for custom n8n nodes.",
+    "license": "SEE LICENSE IN LICENSE.md",
+    "homepage": "https://n8n.io",
+    "author": {
+        "name": "Jan Oberhauser",
+        "email": "jan@n8n.io"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/n8n-io/n8n-nodes-starter.git"
+    },
+    "main": "index.js",
+    "scripts": {
+        "dev": "npm run watch",
+        "build": "tsc && gulp",
+        "tslint": "tslint -p tsconfig.json -c tslint.json",
+        "watch": "tsc --watch",
+        "test": "jest"
+    },
+    "files": [
+        "dist"
+    ],
+    "n8n": {
+        "credentials": [
+            "dist/credentials/ExampleCredentials.credentials.js"
+        ],
+        "nodes": [
+            "dist/nodes/ExampleNode/ExampleNode.node.js"
+        ]
+    },
+    "devDependencies": {
+        "@types/jest": "^24.0.18",
+        "@types/node": "^10.10.1",
+        "gulp": "^4.0.0",
+        "jest": "^24.9.0",
+        "n8n-workflow": "^0.11.0",
+        "ts-jest": "^24.0.2",
+        "tslint": "^5.17.0",
+        "typescript": "~3.5.2"
+    },
+    "dependencies": {
+        "n8n-core": "^0.10.0"
+    },
+    "jest": {
+        "transform": {
+            "^.+\\.tsx?$": "ts-jest"
+        },
+        "testURL": "http://localhost/",
+        "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+        "testPathIgnorePatterns": [
+            "/dist/",
+            "/node_modules/"
+        ],
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js",
+            "json"
+        ]
+    }
+}
