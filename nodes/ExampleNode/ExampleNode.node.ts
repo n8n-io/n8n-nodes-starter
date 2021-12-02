@@ -5,13 +5,13 @@ import {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 
-
 export class ExampleNode implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Example Node',
 		name: 'exampleNode',
 		group: ['transform'],
 		version: 1,
+		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description: 'Basic Example Node',
 		defaults: {
 			name: 'Example Node',
@@ -33,7 +33,6 @@ export class ExampleNode implements INodeType {
 		]
 	};
 
-
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 
 		const items = this.getInputData();
@@ -41,7 +40,7 @@ export class ExampleNode implements INodeType {
 		let item: INodeExecutionData;
 		let myString: string;
 
-		// Itterates over all input items and add the key "myString" with the
+		// Iterates over all input items and add the key "myString" with the
 		// value the parameter "myString" resolves to.
 		// (This could be a different value for each item in case it contains an expression)
 		for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
