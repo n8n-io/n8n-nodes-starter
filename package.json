@@ -25,10 +25,10 @@
     ],
     "n8n": {
         "credentials": [
-            "dist/credentials/ExampleCredentials.credentials.js"
+            "dist/credentials/FriendGridApi.credentials.js"
         ],
         "nodes": [
-            "dist/nodes/ExampleNode/ExampleNode.node.js"
+            "dist/nodes/FriendGrid/FriendGrid.node.js"
         ]
     },
     "devDependencies": {
