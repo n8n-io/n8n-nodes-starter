@@ -3,23 +3,17 @@ import {
 	NodePropertyTypes,
 } from 'n8n-workflow';
 
-
-export class ExampleCredentials implements ICredentialType {
-	name = 'exampleCredentials';
-	displayName = 'Example Credentials';
+export class FriendGridApi implements ICredentialType {
+	name = 'friendGridApi';
+	displayName = 'FriendGrid API';
+	documentationUrl = 'friendGrid';
 	properties = [
 		// The credentials to get from user and save encrypted.
 		// Properties can be defined exactly in the same way
 		// as node properties.
 		{
-			displayName: 'User',
-			name: 'user',
-			type: 'string' as NodePropertyTypes,
-			default: '',
-		},
-		{
-			displayName: 'Access Token',
-			name: 'accessToken',
+			displayName: 'API Key',
+			name: 'apiKey',
 			type: 'string' as NodePropertyTypes,
 			default: '',
 		},
