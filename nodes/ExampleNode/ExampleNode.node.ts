@@ -29,8 +29,8 @@ export class ExampleNode implements INodeType {
 				default: '',
 				placeholder: 'Placeholder value',
 				description: 'The description text',
-			}
-		]
+			},
+		],
 	};
 
 
