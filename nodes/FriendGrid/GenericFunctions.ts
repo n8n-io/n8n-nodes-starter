@@ -16,7 +16,7 @@ import {
 } from 'n8n-workflow';
 
 export async function friendGridApiRequest(this: IHookFunctions | IExecuteFunctions | IExecuteSingleFunctions | ILoadOptionsFunctions,
-	method: string, endpoint: string, body?: object, query?: object, uri?: string): Promise<any> { // tslint:disable-line:no-any
+	method: string, endpoint: string, body?: object, qs?: object, uri?: string): Promise<any> { // tslint:disable-line:no-any
 
 	//Get credentials the user provided for this node
 	const credentials = await this.getCredentials('friendGridApi') as IDataObject;
@@ -32,9 +32,9 @@ export async function friendGridApiRequest(this: IHookFunctions | IExecuteFuncti
 			'Accept': ' application/json',
 			'Authorization': `Bearer ${credentials.apiKey}`,
 		},
-		qs: query,
+		qs,
 		body,
-		uri: uri || `https://api.sendgrid.com/v3/marketing/${endpoint}`,
+		uri: uri || `https://api.sendgrid.com/v3/${endpoint}`,
 		json: true,
 	};
 
