@@ -22,7 +22,7 @@ export const contactOperations = [
 			},
 		],
 		default: 'create',
-		description: 'The operation to perform.',
+		description: 'The operation to perform',
 	},
 ] as INodeProperties[];
 

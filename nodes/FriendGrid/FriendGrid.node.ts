@@ -15,7 +15,7 @@ import {
 import {
 	contactFields,
 	contactOperations,
-} from './ContactDescription';
+} from './descriptions';
 
 import {
 	friendGridApiRequest,
