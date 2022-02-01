@@ -4,29 +4,38 @@
 
 Example starter module for custom n8n nodes.
 
-
 ## Try it out
 
-Clone the repo and execute: 
+[N8N documentation on custom nodes](https://docs.n8n.io/nodes/creating-nodes/create-n8n-nodes-module.html)
+
+Clone the n8n-nodes-starter repository and execute: 
 ```
-cd n8n-nodes-starter
+# Install dependencies
 npm install
+
+# Build the code
 npm run build
+
+# "Publish" the package locally
 npm link
 ```
 
-After that add it to an N8N installation: 
+Create an N8N installation and add the n8n-nodes-starter to it: 
 ```
+# Create an N8N installation
 cd ..
 mkdir n8n_install
 cd n8n_install
 npm init
 npm install
 npm install n8n
+
+# "Install" the locally published module
 npm link n8n-nodes-starter
+
+# Start n8n
 npx n8n
 ```
-
 
 ## License
 
