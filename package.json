@@ -1,16 +1,16 @@
 {
-    "name": "n8n-nodes-starter",
+    "name": "n8n-nodes",
     "version": "0.1.0",
-    "description": "Example starter module for custom n8n nodes.",
+    "description": "Módulos BEE",
     "license": "SEE LICENSE IN LICENSE.md",
-    "homepage": "https://n8n.io",
+    "homepage": "beedata.co",
     "author": {
-        "name": "Jan Oberhauser",
-        "email": "jan@n8n.io"
+        "name": "Santiago Pino",
+        "email": "info@beedata.co"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/n8n-io/n8n-nodes-starter.git"
+        "url": "git+https://github.com/Beedataco/n8n-nodes.git"
     },
     "main": "index.js",
     "scripts": {
@@ -27,10 +27,10 @@
     ],
     "n8n": {
         "credentials": [
-            "dist/credentials/ExampleCredentials.credentials.js"
+            "dist/credentials/BeeFlowOmni.credentials.js"
         ],
         "nodes": [
-            "dist/nodes/ExampleNode/ExampleNode.node.js"
+            "dist/nodes/BeeFlowOmni/BeeFlowOmni.node.js"
         ]
     },
     "devDependencies": {
