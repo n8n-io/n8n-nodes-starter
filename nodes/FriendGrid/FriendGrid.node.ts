@@ -25,6 +25,8 @@ import {
 	OptionsWithUri
 } from 'request';
 
+import { version } from '../version';
+
 export class FriendGrid implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'FriendGrid',
@@ -33,7 +35,7 @@ export class FriendGrid implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Consume FriendGrid API',
+		description: `Consume FriendGrid API (v.${version})`,
 		defaults: {
 				name: 'FriendGrid',
 				color: '#1A82e2',
