@@ -2,13 +2,13 @@
 
 ![n8n.io - Workflow Automation](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)
 
-Example starter module for custom n8n nodes.
+Example starter module for custom n8n nodes. The FriendGrid API code snippets from the n8n documentation are used for this purpose. This is a TEST node used as a template for node creation.
 
 ## Try it out
 
 [N8N documentation on custom nodes](https://docs.n8n.io/nodes/creating-nodes/create-n8n-nodes-module.html)
 
-Clone the n8n-nodes-starter repository and execute: 
+Clone the n8n-nodes-starter repository and execute:
 ```
 # Install dependencies
 npm install
@@ -20,7 +20,7 @@ npm run build
 npm link
 ```
 
-Create an N8N installation and add the n8n-nodes-starter to it: 
+Create an N8N installation and add the n8n-nodes-starter to it:
 ```
 # Create an N8N installation
 cd ..
@@ -31,14 +31,32 @@ npm install
 npm install n8n
 
 # "Install" the locally published module
-npm link n8n-nodes-starter
+npm link @digital-boss/n8n-nodes-starter
 
 # Start n8n
 npx n8n
 ```
+[comment]: <> (# Latest functionality)
+
+# Contribution
+
+To make this node even better, please let us know, [how you use it](mailto:info@digital-north-consulting.com). Commits are always welcome.
+
+# Issues
+
+If you have any issues, please [let us know on GitHub](https://github.com/digital-boss/n8n-nodes-starter/issues).
+
+# About
+
+Special thanks to [N8n nodemation](https://n8n.io) workflow automation by Jan Oberhauser.
+
+Nodes by [digital-north-consulting.com](https://digital-north-consulting.com). For productive use and consulting on this, [contact us please](mailto:info@digital-north-consulting.com).
+
+This node was updated with ❤️ by Valentina Lilova [valentina98](https://github.com/valentina98)
 
 ## License
 
 [Apache 2.0 with Commons Clause](https://github.com/n8n-io/n8n/blob/master/packages/nodes-base/LICENSE.md)
+
 
 

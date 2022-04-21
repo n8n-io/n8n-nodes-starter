@@ -1,5 +1,5 @@
 {
-    "name": "n8n-nodes-starter",
+    "name": "@digital-boss/n8n-nodes-starter",
     "version": "0.1.0",
     "description": "Example starter module for custom n8n nodes.",
     "license": "SEE LICENSE IN LICENSE.md",
