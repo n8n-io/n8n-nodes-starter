@@ -16,13 +16,12 @@
     "scripts": {
         "dev": "npm run watch",
         "build": "tsc && gulp",
-        "tslint": "tslint -p tsconfig.json -c tslint.json",
+        "lint": "tslint -p tsconfig.json -c tslint.json",
+        "lintfix": "tslint --fix -p tsconfig.json -c tslint.json",
+        "nodelinter": "nodelinter",
         "watch": "tsc --watch",
         "test": "jest",
-        "preinstall": "npx npm-force-resolutions"
-    },
-    "resolutions": {
-        "glob-parent": "^6.0.1"
+        "release": "npm run build && npm publish --access=public"
     },
     "files": [
         "dist"
