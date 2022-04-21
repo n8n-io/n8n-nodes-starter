@@ -6,10 +6,10 @@ import {
 	ICredentialsDecrypted,
 	ICredentialTestFunctions,
 	IDataObject,
+	INodeCredentialTestResult,
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
-	NodeCredentialTestResult,
 } from 'n8n-workflow';
 
 import {
@@ -69,7 +69,7 @@ export class FriendGrid implements INodeType {
 
 	methods = {
 		credentialTest: {
-			async testFriendGridApiAuth(this: ICredentialTestFunctions, credential: ICredentialsDecrypted): Promise<NodeCredentialTestResult> {
+			async testFriendGridApiAuth(this: ICredentialTestFunctions, credential: ICredentialsDecrypted): Promise<INodeCredentialTestResult> {
 
 				// https://docs.sendgrid.com/api-reference/users-api/retrieve-your-username
 				const options: OptionsWithUri = {
