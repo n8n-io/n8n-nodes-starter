@@ -1,12 +1,12 @@
 {
   "name": "@digital-boss/n8n-nodes-starter",
   "version": "0.1.1",
-  "description": "Example starter module for custom n8n nodes.",
+  "description": "FriendGrid support for n8n.",
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "https://n8n.io",
   "author": {
-    "name": "Jan Oberhauser",
-    "email": "jan@n8n.io"
+    "name": "Valentina Lilova",
+    "email": "valentina.lilova@digital-boss.de"
   },
   "repository": {
     "type": "git",
