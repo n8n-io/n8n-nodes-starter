@@ -2,9 +2,14 @@
 
 ![n8n.io - Workflow Automation](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)
 
-Example starter module for custom n8n nodes. The FriendGrid API code snippets from the n8n documentation are used for this purpose. This is a TEST node used as a template for node creation.
+Example starter module for custom n8n nodes. FriendGrid API example from the n8n documentation is used for this purpose.
+This is a TEST node used as a template for node creation.
 
-## Try it out
+## Try it out with docker
+
+The recommended way is using our docker image [Digital Boss' N8N custom nodes docker image](https://hub.docker.com/r/digitalboss/n8n-custom-nodes)
+
+## Another way to try it out
 
 [N8N documentation on custom nodes](https://docs.n8n.io/nodes/creating-nodes/create-n8n-nodes-module.html)
 
@@ -36,7 +41,9 @@ npm link @digital-boss/n8n-nodes-starter
 # Start n8n
 npx n8n
 ```
-[comment]: <> (# Latest functionality)
+# Latest functionality
+
+Displayed the package version in the node description. For reference, you can check [genversion](https://www.npmjs.com/package/genversion).
 
 # Contribution
 
