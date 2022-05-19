@@ -3,14 +3,11 @@ import {
 } from 'request';
 
 import {
+	IDataObject,
 	IExecuteFunctions,
 	IExecuteSingleFunctions,
 	IHookFunctions,
 	ILoadOptionsFunctions,
-} from 'n8n-core';
-
-import {
-	IDataObject,
 	NodeApiError,
 	NodeOperationError,
 } from 'n8n-workflow';
@@ -29,7 +26,7 @@ export async function friendGridApiRequest(this: IHookFunctions | IExecuteFuncti
 	const options: OptionsWithUri = {
 		method,
 		headers: {
-			'Accept': ' application/json',
+			'Accept': 'application/json',
 			'Authorization': `Bearer ${credentials.apiKey}`,
 		},
 		qs,
@@ -47,7 +44,8 @@ export async function friendGridApiRequest(this: IHookFunctions | IExecuteFuncti
 
 	try {
 		return this.helpers.request!(options);
-	} catch (error) {
+	// tslint:disable-next-line:no-any
+	} catch (error: any) {
 		throw new NodeApiError(this.getNode(), error);
 	}
 }

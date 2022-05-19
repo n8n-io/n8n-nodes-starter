@@ -1,11 +1,8 @@
 import {
-	IExecuteFunctions,
-} from 'n8n-core';
-
-import {
 	ICredentialsDecrypted,
 	ICredentialTestFunctions,
 	IDataObject,
+	IExecuteFunctions,
 	INodeCredentialTestResult,
 	INodeExecutionData,
 	INodeType,
@@ -93,7 +90,8 @@ export class FriendGrid implements INodeType {
 							message: `${response.error}`,
 						};
 					}
-				} catch (err) {
+				// tslint:disable-next-line:no-any
+				} catch (err: any) {
 					return {
 						status: 'Error',
 						message: `${err.message}`,
@@ -115,7 +113,7 @@ export class FriendGrid implements INodeType {
 		const resource = this.getNodeParameter('resource', 0) as string;
 		const operation = this.getNodeParameter('operation', 0) as string;
 		let body: IDataObject = {};
-		const qs: IDataObject = {};
+		const qs: IDataObject = {}; // query string
 
 		for (let i = 0; i < items.length; i++) {
 			try {
@@ -124,12 +122,9 @@ export class FriendGrid implements INodeType {
 						// https://docs.sendgrid.com/api-reference/contacts/add-or-update-a-contact
 
 						const email = this.getNodeParameter('email', i) as string;
-
 						const additionalFields = this.getNodeParameter('additionalFields', i) as IDataObject;
-						const data: IDataObject = {
-							email,
-						};
 
+						const data: IDataObject = { email };
 						Object.assign(data, additionalFields);
 
 						body = {
@@ -147,7 +142,8 @@ export class FriendGrid implements INodeType {
 				} else if (responseData !== undefined) {
 					returnData.push(responseData as IDataObject);
 				}
-			} catch (error) {
+			// tslint:disable-next-line:no-any
+			} catch (error: any) {
 				if (this.continueOnFail()) {
 					returnData.push({ error: error.message });
 					continue;
