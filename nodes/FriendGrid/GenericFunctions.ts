@@ -3,11 +3,14 @@ import {
 } from 'request';
 
 import {
-	IDataObject,
 	IExecuteFunctions,
 	IExecuteSingleFunctions,
 	IHookFunctions,
 	ILoadOptionsFunctions,
+} from 'n8n-core';
+
+import {
+	IDataObject,
 	NodeApiError,
 	NodeOperationError,
 } from 'n8n-workflow';
