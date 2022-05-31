@@ -9,9 +9,7 @@ export const contactOperations: INodeProperties[] = [
 		type: 'options',
 		displayOptions: {
 			show: {
-				resource: [
-					'contact',
-				],
+				resource: ['contact'],
 			},
 		},
 		options: [
@@ -33,20 +31,16 @@ export const contactFields: INodeProperties[] = [
 	{
 		displayName: 'Email',
 		name: 'email',
-		type: 'string',
 		required: true,
+		type: 'string',
 		displayOptions: {
 			show: {
-				operation: [
-					'create',
-				],
-				resource: [
-					'contact',
-				],
+				resource: ['contact'],
+				operation: ['create'],
 			},
 		},
-		default:'',
-		description:'Primary email for the contact',
+		default: '',
+		description: 'Primary email for the contact',
 	},
 	{
 		displayName: 'Additional Fields',
@@ -56,12 +50,8 @@ export const contactFields: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				resource: [
-					'contact',
-				],
-				operation: [
-					'create',
-				],
+				resource: ['contact'],
+				operation: ['create'],
 			},
 		},
 		options: [

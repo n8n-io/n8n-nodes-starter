@@ -10,6 +10,7 @@ import {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
+	NodeOperationError,
 } from 'n8n-workflow';
 
 import {
@@ -53,6 +54,7 @@ export class FriendGrid implements INodeType {
 			{
 				displayName: 'Resource',
 				name: 'resource',
+				required: true,
 				type: 'options',
 				options: [
 					{
@@ -61,11 +63,17 @@ export class FriendGrid implements INodeType {
 					},
 				],
 				default: 'contact',
-				required: true,
 				description: 'Resource to consume',
 			},
 			...contactOperations,
 			...contactFields,
+			{
+				displayName: 'Simplify Output',
+				name: 'simplifyOutput',
+				type: 'boolean',
+				default: false,
+				description: 'Whether to simplify the output data',
+			},
 		],
 	};
 
@@ -113,32 +121,79 @@ export class FriendGrid implements INodeType {
 		const items = this.getInputData();
 		let responseData;
 		const returnData: IDataObject[] = [];
+
+		let method: string;
+		let endpoint: string;
+		const body: IDataObject = {};
+		const qs: IDataObject = {}; // query string
+
 		const resource = this.getNodeParameter('resource', 0) as string;
 		const operation = this.getNodeParameter('operation', 0) as string;
-		let body: IDataObject = {};
-		const qs: IDataObject = {}; // query string
+		let additionalFields;
 
 		for (let i = 0; i < items.length; i++) {
 			try {
-				if (resource === 'contact') {
-					if (operation === 'create') {
-						// https://docs.sendgrid.com/api-reference/contacts/add-or-update-a-contact
+				switch (resource) {
+					case 'contact':
+						switch (operation) {
+							case 'create':
+								// ----------------------------------
+								//        contact:create
+								// ----------------------------------
 
-						const email = this.getNodeParameter('email', i) as string;
-						const additionalFields = this.getNodeParameter('additionalFields', i) as IDataObject;
+								// https://docs.sendgrid.com/api-reference/contacts/add-or-update-a-contact
+								endpoint = '';
+								method = 'POST';
+								const email = this.getNodeParameter('email', i) as string;
+								additionalFields = this.getNodeParameter('additionalFields', i) as IDataObject;
+								const data: IDataObject = { email };
+								Object.assign(data, additionalFields);
+								body.contacts = [ data ];
+								break;
 
-						const data: IDataObject = { email };
-						Object.assign(data, additionalFields);
+							case 'directContractInsert':
+								// ----------------------------------
+								//        contract:directContractInsert
+								// ----------------------------------
 
-						body = {
-							contacts: [
-								data,
-							],
-						};
+								// .........
+								break;
 
-						responseData = await friendGridApiRequest.call(this, 'POST', '/marketing/contact', body);
+							default: {
+								throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not supported for resource "${resource}"!`);
+							}
+						}
+						break;
+
+					case 'contractProducts':
+						switch (operation) {
+							case 'createDirectInvoice':
+								// ----------------------------------
+								//        contractProducts:createDirectInvoice
+								// ----------------------------------
+
+								// .........
+								break;
+							case 'getDirectInvoice':
+								// ----------------------------------
+								//        contractProducts:getDirectInvoice
+								// ----------------------------------
+
+								// .........
+								break;
+
+							default: {
+								throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not supported for resource "${resource}"!`);
+							}
+						}
+						break;
+
+					default: {
+						throw new NodeOperationError(this.getNode(), `The resource "${resource}" is not supported!`);
 					}
 				}
+
+				responseData = await friendGridApiRequest.call(this, method, endpoint, body, qs);
 
 				if (Array.isArray(responseData)) {
 					returnData.push.apply(returnData, responseData as IDataObject[]);
