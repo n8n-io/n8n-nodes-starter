@@ -12,6 +12,17 @@
     "type": "git",
     "url": "git+https://github.com/digital-boss/n8n-nodes-starter.git"
   },
+  "keywords": [
+    "n8n",
+    "nodemation",
+    "dnc",
+    "digital north consulting",
+    "digital boss",
+    "nodes",
+    "custom",
+    "workflow",
+    "customer service"
+  ],
   "main": "index.js",
   "scripts": {
     "dev": "npm run watch",
