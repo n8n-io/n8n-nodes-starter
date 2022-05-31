@@ -140,10 +140,9 @@ export class FriendGrid implements INodeType {
 								// ----------------------------------
 								//        contact:create
 								// ----------------------------------
-
 								// https://docs.sendgrid.com/api-reference/contacts/add-or-update-a-contact
-								endpoint = '';
-								method = 'POST';
+								endpoint = '/marketing/contacts';
+								method = 'PUT';
 								const email = this.getNodeParameter('email', i) as string;
 								additionalFields = this.getNodeParameter('additionalFields', i) as IDataObject;
 								const data: IDataObject = { email };
@@ -151,11 +150,22 @@ export class FriendGrid implements INodeType {
 								body.contacts = [ data ];
 								break;
 
-							case 'directContractInsert':
+							case 'get':
 								// ----------------------------------
-								//        contract:directContractInsert
+								//        contact:get
 								// ----------------------------------
+								const contactId = this.getNodeParameter('contactId', i) as string;
+								endpoint = `/marketing/contacts/${contactId}`;
+								method = 'GET';
+								// .........
+								break;
 
+							case 'getAll':
+								// ----------------------------------
+								//        contact:getAll
+								// ----------------------------------
+								endpoint = '/marketing/contacts';
+								method = 'GET';
 								// .........
 								break;
 
@@ -165,20 +175,14 @@ export class FriendGrid implements INodeType {
 						}
 						break;
 
-					case 'contractProducts':
+					case 'mail':
 						switch (operation) {
-							case 'createDirectInvoice':
+							case 'send':
 								// ----------------------------------
-								//        contractProducts:createDirectInvoice
+								//        mail:send
 								// ----------------------------------
-
-								// .........
-								break;
-							case 'getDirectInvoice':
-								// ----------------------------------
-								//        contractProducts:getDirectInvoice
-								// ----------------------------------
-
+								endpoint = '/mail/send';
+								method = 'POST';
 								// .........
 								break;
 
