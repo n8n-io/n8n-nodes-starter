@@ -1,6 +1,6 @@
 # n8n-nodes-starter
 
-This repo contains example nodes to help you get starting building your own custom integrations for n8n.
+This repo contains example nodes to help you get started building your own custom integrations for n8n.
 
 All nodes are npm packages. To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
 
