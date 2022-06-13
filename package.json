@@ -1,7 +1,8 @@
 {
-    "name": "n8n-nodes-starter",
+    "name": "n8n-node-starter",
     "version": "0.1.0",
     "description": "Example starter module for custom n8n nodes.",
+    "keywords": ["n8n-community-node-package"],
     "license": "SEE LICENSE IN LICENSE.md",
     "homepage": "https://n8n.io",
     "author": {
