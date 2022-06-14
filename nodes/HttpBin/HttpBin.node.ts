@@ -1,5 +1,6 @@
 import { INodeType, INodeTypeDescription } from "n8n-workflow";
 
+// Description of our Node
 export class HttpBin implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: "HttpBin",
@@ -10,15 +11,15 @@ export class HttpBin implements INodeType {
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description: "Interact with HttpBin API",
 		defaults: {
-			name: "Sendinblue",
-			color: "#044a75",
+			name: "HttpBin",
+			color: "#3b4151",
 		},
 		inputs: ["main"],
 		outputs: ["main"],
 		credentials: [
 			{
-				name: "sendinblueApi",
-				required: true,
+				name: "httpbinApi",
+				required: false,
 			},
 		],
 		requestDefaults: {
@@ -29,6 +30,48 @@ export class HttpBin implements INodeType {
 				"Content-Type": "application/json",
 			},
 		},
-		properties: [],
+		/**
+		 * In the properties array we have two mandatory options objects required
+		 *
+		 * Resource & Operation
+		 *
+		 */
+		properties: [
+			{
+				displayName: "Resource",
+				name: "resource",
+				type: "options",
+				noDataExpression: true,
+				options: [
+					{
+						name: "Http Verbs",
+						value: "httpverbs",
+					},
+					{
+						name: "Auth Methods",
+						value: "authmethods",
+					},
+				],
+				default: "httpverbs",
+			},
+			{
+				displayName: "Operation",
+				name: "operation",
+				type: "options",
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: ["httpverbs"],
+					},
+				},
+				options: [
+					{
+						name: "GET",
+						value: "getMethod",
+					},
+				],
+				default: "getMethod",
+			},
+		],
 	};
 }
