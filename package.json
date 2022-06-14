@@ -31,7 +31,7 @@
   "n8n": {
     "credentials": [
       "dist/credentials/ExampleCredentials.credentials.js",
-      "dist/credentials/HttpBin.credentials.js"
+      "dist/credentials/HttpBinApi.credentials.js"
     ],
     "nodes": [
       "dist/nodes/ExampleNode/ExampleNode.node.js",
