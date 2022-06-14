@@ -30,10 +30,12 @@
   ],
   "n8n": {
     "credentials": [
-      "dist/credentials/ExampleCredentials.credentials.js"
+      "dist/credentials/ExampleCredentials.credentials.js",
+      "dist/credentials/HttpBin.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js"
+      "dist/nodes/ExampleNode/ExampleNode.node.js",
+      "dist/nodes/HttpBin/HttpBin.node.js"
     ]
   },
   "devDependencies": {
@@ -41,7 +43,7 @@
     "@types/jest": "^26.0.13",
     "@types/node": "^14.17.27",
     "@types/request-promise-native": "~1.0.15",
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "jest": "^26.4.2",
     "n8n-workflow": "~0.103.0",
     "nodelinter": "^0.1.9",
