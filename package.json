@@ -1,7 +1,7 @@
 {
   "name": "@digital-boss/n8n-nodes-starter",
   "version": "0.1.0",
-  "description": "FriendGrid support for n8n.",
+  "description": "Example starter module for custom n8n nodes.",
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "https://n8n.io",
   "author": {
