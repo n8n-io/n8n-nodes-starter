@@ -3,6 +3,7 @@
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": [
+		"Development",
 		"HTTP Request & Response Service",
 		"Developer Tools"
 	],
