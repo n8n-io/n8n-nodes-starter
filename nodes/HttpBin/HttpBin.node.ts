@@ -1,6 +1,6 @@
 import { INodeType, INodeTypeDescription } from "n8n-workflow";
+import { httpVerbOperations, httpVerbFields } from "./HttpVerbDescriptions";
 
-// Description of our Node
 export class HttpBin implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: "HttpBin",
@@ -23,7 +23,7 @@ export class HttpBin implements INodeType {
 			},
 		],
 		requestDefaults: {
-			baseURL: "={{$credentials.domain}}",
+			baseURL: "https://httpbin.org",
 			url: "",
 			headers: {
 				Accept: "application/json",
@@ -44,7 +44,7 @@ export class HttpBin implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
-						name: "Http Verbs",
+						name: "HTTP Verbs",
 						value: "httpverbs",
 					},
 					{
@@ -54,24 +54,8 @@ export class HttpBin implements INodeType {
 				],
 				default: "httpverbs",
 			},
-			{
-				displayName: "Operation",
-				name: "operation",
-				type: "options",
-				noDataExpression: true,
-				displayOptions: {
-					show: {
-						resource: ["httpverbs"],
-					},
-				},
-				options: [
-					{
-						name: "GET",
-						value: "getMethod",
-					},
-				],
-				default: "getMethod",
-			},
+			...httpVerbOperations,
+			...httpVerbFields,
 		],
 	};
 }
