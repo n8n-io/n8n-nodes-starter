@@ -1,7 +1,7 @@
 import { INodeProperties } from "n8n-workflow";
 
 /**
- *	This maps the operations to when the resource HTTP Verbs is selected
+ *	This maps the operations to when the Resource option HTTP Verbs is selected
  */
 export const httpVerbOperations: Array<INodeProperties> = [
 	{
@@ -40,12 +40,17 @@ export const httpVerbOperations: Array<INodeProperties> = [
 	},
 ];
 
+/**
+ *
+ * Here we define what to show when the GET Operation is selected
+ *
+ * We do that by adding operation: ["get"], to "displayOptions.show"
+ */
 const getOperation: Array<INodeProperties> = [
 	{
 		name: "typeofData",
 		default: "queryParameterOption",
-		description:
-			"Select type of data to send [Query Parameter Arguments, JSON-Body]",
+		description: "Select type of data to send [Query Parameters]",
 		displayName: "Type of Data",
 		displayOptions: {
 			show: {
@@ -110,12 +115,18 @@ const getOperation: Array<INodeProperties> = [
 	},
 ];
 
+/**
+ *
+ * Here we define what to show when the DELETE Operation is selected
+ *
+ * We do that by adding operation: ["delete"], to "displayOptions.show"
+ */
 const deleteOperation: Array<INodeProperties> = [
 	{
 		name: "typeofData",
 		default: "queryParameterOption",
 		description:
-			"Select type of data to send [Query Parameter Arguments, Form-Data, Body, JSON]",
+			"Select type of data to send [Query Parameter Arguments, JSON-Body]",
 		displayName: "Type of Data",
 		displayOptions: {
 			show: {
