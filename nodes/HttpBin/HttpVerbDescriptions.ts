@@ -66,7 +66,7 @@ const getOperation: Array<INodeProperties> = [
 		name: "arguments",
 		default: {},
 		description: "The request's query parameters",
-		displayName: "GET Query Parameters",
+		displayName: "Query Parameters",
 		displayOptions: {
 			show: {
 				resource: ["httpverbs"],
@@ -140,7 +140,7 @@ const deleteOperation: Array<INodeProperties> = [
 		name: "arguments",
 		default: {},
 		description: "The request's query parameters",
-		displayName: "DELETE Query Parameters",
+		displayName: "Query Parameters",
 		displayOptions: {
 			show: {
 				resource: ["httpverbs"],
@@ -186,8 +186,8 @@ const deleteOperation: Array<INodeProperties> = [
 	{
 		name: "arguments",
 		default: {},
-		description: "The request's query parameters",
-		displayName: "DELETE JSON Object",
+		description: "The request's JSON properties",
+		displayName: "JSON Object",
 		displayOptions: {
 			show: {
 				resource: ["httpverbs"],
