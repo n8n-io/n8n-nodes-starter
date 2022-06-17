@@ -5,7 +5,7 @@
   "keywords": [
     "n8n-community-node-package"
   ],
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "MIT",
   "homepage": "https://n8n.io",
   "author": {
     "name": "Jan Oberhauser",
