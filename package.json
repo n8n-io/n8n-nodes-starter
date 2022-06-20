@@ -23,7 +23,8 @@
     "lintfix": "tslint --fix -p tsconfig.json -c tslint.json",
     "nodelinter": "nodelinter",
     "watch": "tsc --watch",
-    "test": "jest"
+    "test": "jest",
+    "lintfix-plugin": "cd ../.. && node_modules/eslint/bin/eslint.js packages/nodes-base/nodes --fix"
   },
   "files": [
     "dist"
@@ -49,7 +50,8 @@
     "nodelinter": "^0.1.9",
     "ts-jest": "^26.3.0",
     "tslint": "^6.1.2",
-    "typescript": "~4.3.5"
+    "typescript": "~4.3.5",
+    "eslint-plugin-n8n-nodes-base": "^1.0.43"
   },
   "dependencies": {
     "n8n-core": "~0.122.1"
