@@ -4,18 +4,18 @@ import {
 	ICredentialType,
 	IHttpRequestOptions,
 	INodeProperties,
-} from "n8n-workflow";
+} from 'n8n-workflow';
 
 export class HttpBinApi implements ICredentialType {
-	name = "httpbinApi";
-	displayName = "HttpBin API";
-	documentationUrl = "httpbin";
+	name = 'httpbinApi';
+	displayName = 'HttpBin API';
+	documentationUrl = 'httpbin';
 	properties: INodeProperties[] = [
 		{
-			displayName: "Token",
-			name: "token",
-			type: "string",
-			default: "",
+			displayName: 'Token',
+			name: 'token',
+			type: 'string',
+			default: '',
 		},
 		// {
 		// 	displayName: "API Key",
@@ -24,10 +24,10 @@ export class HttpBinApi implements ICredentialType {
 		// 	default: "",
 		// },
 		{
-			displayName: "Domain",
-			name: "domain",
-			type: "string",
-			default: "https://httpbin.org",
+			displayName: 'Domain',
+			name: 'domain',
+			type: 'string',
+			default: 'https://httpbin.org',
 		},
 	];
 
@@ -41,7 +41,7 @@ export class HttpBinApi implements ICredentialType {
 
 	authenticate = async (
 		credentials: ICredentialDataDecryptedObject,
-		requestOptions: IHttpRequestOptions
+		requestOptions: IHttpRequestOptions,
 	): Promise<IHttpRequestOptions> => {
 		const headers = requestOptions.headers || {};
 		const authentication = { Authorization: `Bearer ${credentials.token}` };
@@ -53,8 +53,8 @@ export class HttpBinApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: "={{$credentials?.domain}}",
-			url: "/bearer",
+			baseURL: '={{$credentials?.domain}}',
+			url: '/bearer',
 		},
 	};
 }
