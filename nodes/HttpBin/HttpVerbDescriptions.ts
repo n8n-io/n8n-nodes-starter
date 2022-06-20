@@ -49,7 +49,7 @@ export const httpVerbOperations: Array<INodeProperties> = [
 const getOperation: Array<INodeProperties> = [
 	{
 		name: "typeofData",
-		default: "queryParameterOption",
+		default: "queryParameter",
 		description: "Select type of data to send [Query Parameters]",
 		displayName: "Type of Data",
 		displayOptions: {
@@ -124,7 +124,7 @@ const getOperation: Array<INodeProperties> = [
 const deleteOperation: Array<INodeProperties> = [
 	{
 		name: "typeofData",
-		default: "queryParameterOption",
+		default: "queryParameter",
 		description:
 			"Select type of data to send [Query Parameter Arguments, JSON-Body]",
 		displayName: "Type of Data",

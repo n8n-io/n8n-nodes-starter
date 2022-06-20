@@ -52,11 +52,7 @@ export class HttpBin implements INodeType {
 					{
 						name: "HTTP Verbs",
 						value: "httpverbs",
-					},
-					{
-						name: "Auth Methods",
-						value: "authmethods",
-					},
+					}
 				],
 				default: "httpverbs",
 			},
