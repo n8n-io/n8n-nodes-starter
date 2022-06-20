@@ -5,7 +5,7 @@
   "keywords": [
     "n8n-community-node-package"
   ],
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "MIT",
   "homepage": "https://n8n.io",
   "author": {
     "name": "Jan Oberhauser",
@@ -45,14 +45,17 @@
     "@types/request-promise-native": "~1.0.15",
     "gulp": "^4.0.2",
     "jest": "^26.4.2",
-    "n8n-workflow": "~0.103.0",
+    "n8n-workflow": "~0.104.0",
     "nodelinter": "^0.1.9",
     "ts-jest": "^26.3.0",
     "tslint": "^6.1.2",
     "typescript": "~4.3.5"
   },
   "dependencies": {
-    "n8n-core": "~0.121.3"
+    "n8n-core": "~0.122.1"
+  },
+  "overrides": {
+    "glob-parent": "5.1.2"
   },
   "jest": {
     "transform": {
