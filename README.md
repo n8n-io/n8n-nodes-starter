@@ -13,6 +13,8 @@ All nodes are npm packages. To make your custom node available to the community,
 2. Open the project in your editor.
 3. Browse the examples in `/nodes`. Modify the examples, or replace them with your own nodes.
 4. Update the `package.json` to match your details.
+5. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
+6. Publish your package to npm. More information on the links below.
 
 ## More information
 
