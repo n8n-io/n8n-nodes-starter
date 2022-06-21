@@ -1,3 +1,4 @@
+/* eslint-disable n8n-nodes-base/filesystem-wrong-node-filename */
 import { INodeType, INodeTypeDescription } from 'n8n-workflow';
 import { httpVerbFields, httpVerbOperations } from './HttpVerbDescriptions';
 
@@ -50,7 +51,7 @@ export class HttpBin implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
-						name: 'HTTP Verbs',
+						name: 'HTTP Verb',
 						value: 'httpverbs',
 					},
 				],

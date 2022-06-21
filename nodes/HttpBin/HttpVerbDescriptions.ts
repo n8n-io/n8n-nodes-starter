@@ -207,7 +207,7 @@ const deleteOperation: INodeProperties[] = [
 						type: 'string',
 						default: '',
 						required: true,
-						description: 'Key of json property',
+						description: 'Key of JSON property',
 					},
 					{
 						displayName: 'Value',
@@ -221,7 +221,7 @@ const deleteOperation: INodeProperties[] = [
 							},
 						},
 						required: true,
-						description: 'Value of json property',
+						description: 'Value of JSON property',
 					},
 				],
 			},
