@@ -51,8 +51,5 @@
   },
   "dependencies": {
     "n8n-core": "~0.122.1"
-  },
-  "overrides": {
-    "glob-parent": "5.1.2"
   }
 }
