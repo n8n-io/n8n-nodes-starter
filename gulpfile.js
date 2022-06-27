@@ -1,11 +1,11 @@
-const { src, dest } = require('gulp');
+const { task, src, dest } = require('gulp');
+
+task('build:icons', copyIcons);
 
 function copyIcons() {
-	src('nodes/**/*.{png,svg}')
-		.pipe(dest('dist/nodes'))
+	src('nodes/**/*.{png,svg}').pipe(dest('dist/nodes'));
 
-	return src('credentials/**/*.{png,svg}')
-		.pipe(dest('dist/credentials'));
+	return src('credentials/**/*.{png,svg}').pipe(dest('dist/credentials'));
 }
 
-exports.default = copyIcons;
+// TODO: Add i18n to pipeline

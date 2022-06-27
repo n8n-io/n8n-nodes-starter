@@ -1,8 +1,4 @@
-import {
-	ICredentialType,
-	NodePropertyTypes,
-} from 'n8n-workflow';
-
+import { ICredentialType, NodePropertyTypes } from 'n8n-workflow';
 
 export class ExampleCredentials implements ICredentialType {
 	name = 'exampleCredentials';

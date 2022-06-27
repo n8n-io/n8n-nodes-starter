@@ -64,7 +64,7 @@ const getOperation: INodeProperties[] = [
 	{
 		name: 'arguments',
 		default: {},
-		description: 'The request\'s query parameters',
+		description: "The request's query parameters",
 		displayName: 'Query Parameters',
 		displayOptions: {
 			show: {
@@ -115,8 +115,7 @@ const deleteOperation: INodeProperties[] = [
 	{
 		name: 'typeofData',
 		default: 'queryParameter',
-		description:
-			'Select type of data to send [Query Parameter Arguments, JSON-Body]',
+		description: 'Select type of data to send [Query Parameter Arguments, JSON-Body]',
 		displayName: 'Type of Data',
 		displayOptions: {
 			show: {
@@ -140,7 +139,7 @@ const deleteOperation: INodeProperties[] = [
 	{
 		name: 'arguments',
 		default: {},
-		description: 'The request\'s query parameters',
+		description: "The request's query parameters",
 		displayName: 'Query Parameters',
 		displayOptions: {
 			show: {
@@ -187,7 +186,7 @@ const deleteOperation: INodeProperties[] = [
 	{
 		name: 'arguments',
 		default: {},
-		description: 'The request\'s JSON properties',
+		description: "The request's JSON properties",
 		displayName: 'JSON Object',
 		displayOptions: {
 			show: {

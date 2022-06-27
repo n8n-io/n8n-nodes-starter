@@ -1,10 +1,5 @@
 import { IExecuteFunctions } from 'n8n-core';
-import {
-	INodeExecutionData,
-	INodeType,
-	INodeTypeDescription,
-} from 'n8n-workflow';
-
+import { INodeExecutionData, INodeType, INodeTypeDescription } from 'n8n-workflow';
 
 export class ExampleNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -33,9 +28,7 @@ export class ExampleNode implements INodeType {
 		],
 	};
 
-
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-
 		const items = this.getInputData();
 
 		let item: INodeExecutionData;
@@ -52,6 +45,5 @@ export class ExampleNode implements INodeType {
 		}
 
 		return this.prepareOutputData(items);
-
 	}
 }
