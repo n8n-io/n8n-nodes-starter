@@ -19,6 +19,7 @@
   "scripts": {
     "dev": "npm run watch",
     "build": "tsc && gulp",
+    "format": "prettier nodes credentials --write",
     "lint": "tslint -p tsconfig.json -c tslint.json && node_modules/eslint/bin/eslint.js ./nodes",
     "lintfix": "tslint --fix -p tsconfig.json -c tslint.json && node_modules/eslint/bin/eslint.js --fix ./nodes",
     "watch": "tsc --watch",
