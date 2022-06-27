@@ -18,7 +18,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run watch",
-    "build": "tsc && gulp",
+    "build": "tsc && gulp build:icons",
     "format": "prettier nodes credentials --write",
     "lint": "tslint -p tsconfig.json -c tslint.json && node_modules/eslint/bin/eslint.js ./nodes",
     "lintfix": "tslint --fix -p tsconfig.json -c tslint.json && node_modules/eslint/bin/eslint.js --fix ./nodes",
