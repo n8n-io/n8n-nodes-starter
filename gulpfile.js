@@ -7,3 +7,5 @@ function copyIcons() {
 
 	return src('credentials/**/*.{png,svg}').pipe(dest('dist/credentials'));
 }
+
+// TODO: Add i18n to pipeline
