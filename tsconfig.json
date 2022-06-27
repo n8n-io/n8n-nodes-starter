@@ -6,7 +6,6 @@
 		],
 		"types": [
 			"node",
-			"jest"
 		],
 		"module": "commonjs",
 		"noImplicitAny": true,
