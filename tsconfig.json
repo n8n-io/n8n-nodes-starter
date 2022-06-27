@@ -2,11 +2,10 @@
 	"compilerOptions": {
 		"lib": [
 			"es2017",
-			"es2019.array"
+			"es2019"
 		],
 		"types": [
 			"node",
-			"jest"
 		],
 		"module": "commonjs",
 		"noImplicitAny": true,
@@ -19,16 +18,12 @@
 		"outDir": "./dist/",
 		"target": "es2019",
 		"sourceMap": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"useUnknownInCatchVariables": false,
 	},
 	"include": [
 		"credentials/**/*",
-		"src/**/*",
 		"nodes/**/*",
 		"nodes/**/*.json",
-		"test/**/*"
 	],
-	"exclude": [
-		"**/*.spec.ts"
-	]
 }
