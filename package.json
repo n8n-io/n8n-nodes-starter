@@ -19,10 +19,8 @@
   "scripts": {
     "dev": "npm run watch",
     "build": "tsc && gulp",
-    "lint": "tslint -p tsconfig.json -c tslint.json && node_modules/eslint/bin/eslint.js ./nodes",
-    "lintfix": "tslint --fix -p tsconfig.json -c tslint.json && node_modules/eslint/bin/eslint.js --fix ./nodes",
-    "lint:plugin": "eslint nodes credentials package.json",
-    "lintfix:plugin": "eslint nodes credentials package.json --fix",
+    "lint": "tslint -p tsconfig.json -c tslint.json; eslint nodes credentials package.json",
+    "lintfix": "tslint --fix -p tsconfig.json -c tslint.json; eslint nodes credentials package.json --fix",
     "watch": "tsc --watch",
     "test": "jest"
   },
