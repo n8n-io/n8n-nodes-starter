@@ -21,6 +21,8 @@
     "build": "tsc && gulp",
     "lint": "tslint -p tsconfig.json -c tslint.json && node_modules/eslint/bin/eslint.js ./nodes",
     "lintfix": "tslint --fix -p tsconfig.json -c tslint.json && node_modules/eslint/bin/eslint.js --fix ./nodes",
+    "lint:plugin": "eslint nodes credentials package.json",
+    "lintfix:plugin": "eslint nodes credentials package.json --fix",
     "watch": "tsc --watch",
     "test": "jest"
   },
@@ -41,7 +43,7 @@
     "@types/express": "^4.17.6",
     "@types/request-promise-native": "~1.0.15",
     "@typescript-eslint/parser": "^5.29.0",
-    "eslint-plugin-n8n-nodes-base": "^1.0.43",
+    "eslint-plugin-n8n-nodes-base": "~1.1.1",
     "gulp": "^4.0.2",
     "jest": "^26.4.2",
     "n8n-workflow": "~0.104.0",
