@@ -11,6 +11,7 @@ module.exports = {
 	parserOptions: {
 		project: ['./tsconfig.json'],
 		sourceType: 'module',
+		extraFileExtensions: ['.json'],
 	},
 	ignorePatterns: [
 		'.eslintrc.js',
@@ -25,10 +26,39 @@ module.exports = {
 
 	overrides: [
 		{
-			files: [ './**/*.ts' ],
+			files: ['package.json'],
+			plugins: ['eslint-plugin-n8n-nodes-base'],
+			rules: {
+				'n8n-nodes-base/community-package-json-author-email-still-default': 'error',
+				'n8n-nodes-base/community-package-json-author-missing': 'error',
+				'n8n-nodes-base/community-package-json-author-name-missing': 'error',
+				'n8n-nodes-base/community-package-json-author-name-still-default': 'error',
+				'n8n-nodes-base/community-package-json-description-missing': 'error',
+				'n8n-nodes-base/community-package-json-description-still-default': 'error',
+				'n8n-nodes-base/community-package-json-keywords-missing': 'error',
+				'n8n-nodes-base/community-package-json-keywords-without-official-tag': 'error',
+				'n8n-nodes-base/community-package-json-license-missing': 'error',
+				'n8n-nodes-base/community-package-json-license-not-default': 'error',
+				'n8n-nodes-base/community-package-json-n8n-missing': 'error',
+				'n8n-nodes-base/community-package-json-n8n-nodes-empty': 'error',
+				'n8n-nodes-base/community-package-json-n8n-nodes-missing': 'error',
+				'n8n-nodes-base/community-package-json-name-missing': 'error',
+				'n8n-nodes-base/community-package-json-name-still-default': 'error',
+				'n8n-nodes-base/community-package-json-repository-url-still-default': 'error',
+				'n8n-nodes-base/community-package-json-version-missing': 'error',
+			},
+		},
+		{
+			files: ['./credentials/**/*.ts'],
 			plugins: ['eslint-plugin-n8n-nodes-base'],
 			rules: {
 				'n8n-nodes-base/filesystem-wrong-cred-filename': 'error',
+			},
+		},
+		{
+			files: ['./nodes/**/*.ts'],
+			plugins: ['eslint-plugin-n8n-nodes-base'],
+			rules: {
 				'n8n-nodes-base/filesystem-wrong-node-filename': 'error',
 				'n8n-nodes-base/node-class-description-empty-string': 'error',
 				'n8n-nodes-base/node-class-description-icon-not-svg': 'error',
