@@ -21,7 +21,8 @@
     "dev": "tsc --watch",
     "format": "prettier nodes credentials --write",
     "lint": "tslint -p tsconfig.json -c tslint.json; eslint nodes credentials package.json",
-    "lintfix": "tslint --fix -p tsconfig.json -c tslint.json; eslint nodes credentials package.json --fix"
+    "lintfix": "tslint --fix -p tsconfig.json -c tslint.json; eslint nodes credentials package.json --fix",
+    "prepare": "npm run build && npm run lint"
   },
   "files": [
     "dist"
