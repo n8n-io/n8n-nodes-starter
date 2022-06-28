@@ -42,12 +42,10 @@
     "@typescript-eslint/parser": "^5.29.0",
     "eslint-plugin-n8n-nodes-base": "~1.1.1",
     "gulp": "^4.0.2",
+    "n8n-core": "~0.122.1",
     "n8n-workflow": "~0.104.0",
     "prettier": "^2.7.1",
     "tslint": "^6.1.2",
     "typescript": "~4.6.0"
-  },
-  "dependencies": {
-    "n8n-core": "~0.122.1"
   }
 }
