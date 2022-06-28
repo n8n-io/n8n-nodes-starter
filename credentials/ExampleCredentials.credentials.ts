@@ -1,22 +1,22 @@
-import { ICredentialType, NodePropertyTypes } from 'n8n-workflow';
+import { ICredentialType, INodeProperties } from 'n8n-workflow';
 
 export class ExampleCredentials implements ICredentialType {
 	name = 'exampleCredentials';
 	displayName = 'Example Credentials';
-	properties = [
-		// The credentials to get from user and save encrypted.
-		// Properties can be defined exactly in the same way
-		// as node properties.
+	properties: INodeProperties[] = [
+		// Credential data to request from the user, saved in encrypted format.
+		// Credential properties are defined exactly like node properties.
 		{
-			displayName: 'User',
-			name: 'user',
-			type: 'string' as NodePropertyTypes,
+			displayName: 'Base URL',
+			name: 'url',
+			type: 'string',
 			default: '',
+			placeholder: 'https://example.com',
 		},
 		{
 			displayName: 'Access Token',
 			name: 'accessToken',
-			type: 'string' as NodePropertyTypes,
+			type: 'string',
 			default: '',
 		},
 	];
