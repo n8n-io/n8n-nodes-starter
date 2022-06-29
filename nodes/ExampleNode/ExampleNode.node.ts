@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-core';
-import { INodeExecutionData, INodeType, INodeTypeDescription } from 'n8n-workflow';
+import { INodeExecutionData, INodeType, INodeTypeDescription, NodeOperationError } from 'n8n-workflow';
 
 export class ExampleNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -55,8 +55,13 @@ export class ExampleNode implements INodeType {
 					items.push({json: this.getInputData(itemIndex)[0].json, error});
 				} else {
 					// Adding `itemIndex` allows other workflows to handle this error
-					if (error.context) error.context.itemIndex = itemIndex;
-					throw error;
+					if (error.context)  {
+						error.context.itemIndex = itemIndex;
+						throw error;
+					}
+					throw new NodeOperationError(this.getNode(), error.message, {
+						itemIndex,
+					});
 				}
 			}
 
