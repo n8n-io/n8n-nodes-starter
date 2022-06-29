@@ -55,7 +55,9 @@ export class ExampleNode implements INodeType {
 					items.push({json: this.getInputData(itemIndex)[0].json, error});
 				} else {
 					// Adding `itemIndex` allows other workflows to handle this error
-					if (error.context)  {
+					if (error.context) {
+						// If the error thrown already contains the context property,
+						// only append the itemIndex
 						error.context.itemIndex = itemIndex;
 						throw error;
 					}
