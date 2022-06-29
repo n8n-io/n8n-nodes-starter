@@ -61,7 +61,7 @@ export class ExampleNode implements INodeType {
 						error.context.itemIndex = itemIndex;
 						throw error;
 					}
-					throw new NodeOperationError(this.getNode(), error.message, {
+					throw new NodeOperationError(this.getNode(), error, {
 						itemIndex,
 					});
 				}

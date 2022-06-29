@@ -1,9 +1,7 @@
 import {
 	IAuthenticateGeneric,
-	ICredentialDataDecryptedObject,
 	ICredentialTestRequest,
 	ICredentialType,
-	IHttpRequestOptions,
 	INodeProperties,
 } from 'n8n-workflow';
 
@@ -33,9 +31,8 @@ export class HttpBinApi implements ICredentialType {
 	authenticate = {
 		type: 'generic',
 		properties: {
-			header: {
-				name: 'api-key',
-				value: '={{$credentials.apiKey}}',
+			headers: {
+				Authorization: '={{"Bearer " + $credentials.token}}',
 			},
 		},
 	} as IAuthenticateGeneric;
