@@ -52,14 +52,14 @@ module.exports = {
 			files: ['./credentials/**/*.ts'],
 			plugins: ['eslint-plugin-n8n-nodes-base'],
 			rules: {
-				'n8n-nodes-base/filesystem-wrong-cred-filename': 'error',
+				'n8n-nodes-base/cred-filename-against-convention': 'error',
 			},
 		},
 		{
 			files: ['./nodes/**/*.ts'],
 			plugins: ['eslint-plugin-n8n-nodes-base'],
 			rules: {
-				'n8n-nodes-base/filesystem-wrong-node-filename': 'error',
+				'n8n-nodes-base/node-filename-against-convention': 'error',
 				'n8n-nodes-base/node-class-description-empty-string': 'error',
 				'n8n-nodes-base/node-class-description-icon-not-svg': 'error',
 				'n8n-nodes-base/node-class-description-inputs-wrong-trigger-node': 'error',
