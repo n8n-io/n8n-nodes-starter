@@ -17,7 +17,6 @@ export const httpVerbOperations: INodeProperties[] = [
 			{
 				name: 'GET',
 				value: 'get',
-				// action: 'Perform a GET request', // TODO: Uncomment once #3610 merged to master
 				routing: {
 					request: {
 						method: 'GET',
@@ -28,7 +27,6 @@ export const httpVerbOperations: INodeProperties[] = [
 			{
 				name: 'DELETE',
 				value: 'delete',
-				// action: 'Perform a DELETE request', // TODO: Uncomment once #3610 merged to master
 				routing: {
 					request: {
 						method: 'DELETE',

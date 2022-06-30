@@ -115,8 +115,6 @@ module.exports = {
 				'n8n-nodes-base/node-param-display-name-wrong-for-update-fields': 'error',
 				'n8n-nodes-base/node-param-min-value-wrong-for-limit': 'error',
 				'n8n-nodes-base/node-param-multi-options-type-unsorted-items': 'error',
-				// 'n8n-nodes-base/node-param-operation-option-action-miscased': 'error', // TODO: Uncomment once #3610 merged to master
-				// 'n8n-nodes-base/node-param-operation-option-without-action': 'error', // TODO: Uncomment once #3610 merged to master
 				'n8n-nodes-base/node-param-operation-without-no-data-expression': 'error',
 				'n8n-nodes-base/node-param-option-description-identical-to-name': 'error',
 				'n8n-nodes-base/node-param-option-name-containing-star': 'error',
