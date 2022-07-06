@@ -1,11 +1,10 @@
-/* eslint-disable n8n-nodes-base/filesystem-wrong-node-filename */
 import { INodeType, INodeTypeDescription } from 'n8n-workflow';
-import { httpVerbFields, httpVerbOperations } from './HttpVerbDescriptions';
+import { httpVerbFields, httpVerbOperations } from './HttpVerbDescription';
 
 export class HttpBin implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'HttpBin',
-		name: 'httpbin',
+		name: 'httpBin',
 		icon: 'file:httpbin.svg',
 		group: ['transform'],
 		version: 1,
@@ -36,11 +35,10 @@ export class HttpBin implements INodeType {
 		 *
 		 * [Resource & Operation]
 		 *
-		 *
 		 * https://docs.n8n.io/integrations/creating-nodes/code/create-first-node/#resources-and-operations
 		 *
-		 * In our example, the operations are separated into their own file (HTTPVerbDescription)
-		 * to keep this class easy to read
+		 * In our example, the operations are separated into their own file (HTTPVerbDescription.ts)
+		 * to keep this class easy to read.
 		 *
 		 */
 		properties: [
@@ -52,10 +50,10 @@ export class HttpBin implements INodeType {
 				options: [
 					{
 						name: 'HTTP Verb',
-						value: 'httpverbs',
+						value: 'httpVerb',
 					},
 				],
-				default: 'httpverbs',
+				default: 'httpVerb',
 			},
 
 			...httpVerbOperations,

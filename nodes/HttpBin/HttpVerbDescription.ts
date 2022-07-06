@@ -1,21 +1,23 @@
 import { INodeProperties } from 'n8n-workflow';
 
-//	This maps the operations to when the Resource option HTTP Verbs is selected
+// When the resource `httpVerb` is selected, this `operation` parameter will be shown.
 export const httpVerbOperations: INodeProperties[] = [
 	{
 		displayName: 'Operation',
 		name: 'operation',
 		type: 'options',
 		noDataExpression: true,
+
 		displayOptions: {
 			show: {
-				resource: ['httpverbs'],
+				resource: ['httpVerb'],
 			},
 		},
 		options: [
 			{
 				name: 'GET',
 				value: 'get',
+				action: 'Perform a GET request',
 				routing: {
 					request: {
 						method: 'GET',
@@ -26,6 +28,7 @@ export const httpVerbOperations: INodeProperties[] = [
 			{
 				name: 'DELETE',
 				value: 'delete',
+				action: 'Perform a DELETE request',
 				routing: {
 					request: {
 						method: 'DELETE',
@@ -38,8 +41,8 @@ export const httpVerbOperations: INodeProperties[] = [
 	},
 ];
 
-//	Here we define what to show when the GET Operation is selected
-//	We do that by adding operation: ["get"], to "displayOptions.show"
+// Here we define what to show when the `get` operation is selected.
+// We do that by adding `operation: ["get"]` to `displayOptions.show`
 const getOperation: INodeProperties[] = [
 	{
 		name: 'typeofData',
@@ -48,7 +51,7 @@ const getOperation: INodeProperties[] = [
 		displayName: 'Type of Data',
 		displayOptions: {
 			show: {
-				resource: ['httpverbs'],
+				resource: ['httpVerb'],
 				operation: ['get'],
 			},
 		},
@@ -68,7 +71,7 @@ const getOperation: INodeProperties[] = [
 		displayName: 'Query Parameters',
 		displayOptions: {
 			show: {
-				resource: ['httpverbs'],
+				resource: ['httpVerb'],
 				operation: ['get'],
 			},
 		},
@@ -109,8 +112,8 @@ const getOperation: INodeProperties[] = [
 	},
 ];
 
-//	Here we define what to show when the DELETE Operation is selected
-//	We do that by adding operation: ["delete"], to "displayOptions.show"
+// Here we define what to show when the DELETE Operation is selected.
+// We do that by adding `operation: ["delete"]` to `displayOptions.show`
 const deleteOperation: INodeProperties[] = [
 	{
 		name: 'typeofData',
@@ -119,7 +122,7 @@ const deleteOperation: INodeProperties[] = [
 		displayName: 'Type of Data',
 		displayOptions: {
 			show: {
-				resource: ['httpverbs'],
+				resource: ['httpVerb'],
 				operation: ['delete'],
 			},
 		},
@@ -143,7 +146,7 @@ const deleteOperation: INodeProperties[] = [
 		displayName: 'Query Parameters',
 		displayOptions: {
 			show: {
-				resource: ['httpverbs'],
+				resource: ['httpVerb'],
 				operation: ['delete'],
 				typeofData: ['queryParameter'],
 			},
@@ -190,7 +193,7 @@ const deleteOperation: INodeProperties[] = [
 		displayName: 'JSON Object',
 		displayOptions: {
 			show: {
-				resource: ['httpverbs'],
+				resource: ['httpVerb'],
 				operation: ['delete'],
 				typeofData: ['jsonData'],
 			},
@@ -234,12 +237,12 @@ const deleteOperation: INodeProperties[] = [
 
 export const httpVerbFields: INodeProperties[] = [
 	/* -------------------------------------------------------------------------- */
-	/*                                Http Verbs:Get                               */
+	/*                                httpVerb:get                                */
 	/* -------------------------------------------------------------------------- */
 	...getOperation,
 
 	/* -------------------------------------------------------------------------- */
-	/*                                Http Verbs:Delete                           */
+	/*                              httpVerb:delete                               */
 	/* -------------------------------------------------------------------------- */
 	...deleteOperation,
 ];

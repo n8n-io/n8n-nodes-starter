@@ -1,11 +1,16 @@
+const path = require('path');
 const { task, src, dest } = require('gulp');
 
 task('build:icons', copyIcons);
 
 function copyIcons() {
-	src('nodes/**/*.{png,svg}').pipe(dest('dist/nodes'));
+	const nodeSource = path.resolve('nodes', '**', '*.{png,svg}');
+	const nodeDestination = path.resolve('dist', 'nodes');
 
-	return src('credentials/**/*.{png,svg}').pipe(dest('dist/credentials'));
+	src(nodeSource).pipe(dest(nodeDestination));
+
+	const credSource = path.resolve('credentials', '**', '*.{png,svg}');
+	const credDestination = path.resolve('dist', 'credentials');
+
+	return src(credSource).pipe(dest(credDestination));
 }
-
-// TODO: Add i18n to pipeline
