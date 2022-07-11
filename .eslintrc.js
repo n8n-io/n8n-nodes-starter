@@ -18,10 +18,6 @@ module.exports = {
 		'**/*.js',
 		'**/node_modules/**',
 		'**/dist/**',
-		'**/test/**',
-		'**/templates/**',
-		'**/ormconfig.ts',
-		'**/migrations/**',
 	],
 
 	overrides: [
