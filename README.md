@@ -10,7 +10,7 @@ All nodes are npm packages. To make your custom node available to the community,
     ```
     git clone https://github.com/n8n-io/n8n-nodes-starter.git
     ```
-2. Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+2. Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/).
 3. Open the project in your editor.
 4. Browse the examples in `/nodes`. Modify the examples, or replace them with your own nodes.
 5. Update the `package.json` to match your details.
