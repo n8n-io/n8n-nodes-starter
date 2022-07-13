@@ -6,12 +6,12 @@
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "https://docs.n8n.io/credentials/httpbin"
+				"url": "http://httpbin.org/#/Auth/get_bearer"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "https://docs.n8n.io/nodes/n8n-nodes-base.httpbin/"
+				"url": "http://httpbin.org/"
 			}
 		]
 	}
