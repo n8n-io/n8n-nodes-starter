@@ -8,7 +8,7 @@ import {
 export class HttpBinApi implements ICredentialType {
 	name = 'httpbinApi';
 	displayName = 'HttpBin API';
-	documentationUrl = 'https://httpbin.org/#/Auth/get_bearer';
+	documentationUrl = '<your-docs-url>';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Token',
