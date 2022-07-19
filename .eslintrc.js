@@ -25,6 +25,9 @@ module.exports = {
 			files: ['package.json'],
 			plugins: ['eslint-plugin-n8n-nodes-base'],
 			extends: ['plugin:n8n-nodes-base/community'],
+			rules: {
+				'n8n-nodes-base/community-package-json-name-still-default': 'off',
+			}
 		},
 		{
 			files: ['./credentials/**/*.ts'],
