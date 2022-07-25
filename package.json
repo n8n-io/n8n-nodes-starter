@@ -30,7 +30,7 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentials.credentials.js",
+      "dist/credentials/ExampleCredentialsApi.credentials.js",
       "dist/credentials/HttpBinApi.credentials.js"
     ],
     "nodes": [
