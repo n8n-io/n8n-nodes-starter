@@ -1,19 +1,19 @@
 {
-  "name": "n8n-nodes-starter",
+  "name": "n8n-nodes-<...>",
   "version": "0.1.0",
-  "description": "Example starter module for custom n8n nodes.",
+  "description": "",
   "keywords": [
     "n8n-community-node-package"
   ],
   "license": "MIT",
-  "homepage": "https://n8n.io",
+  "homepage": "",
   "author": {
-    "name": "Jan Oberhauser",
-    "email": "jan@n8n.io"
+    "name": "",
+    "email": ""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/n8n-io/n8n-nodes-starter.git"
+    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
   },
   "main": "index.js",
   "scripts": {
