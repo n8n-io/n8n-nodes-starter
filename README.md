@@ -1,20 +1,40 @@
+![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+
 # n8n-nodes-starter
 
-This repo contains example nodes to help you get started building your own custom integrations for n8n.
+This repo contains example nodes to help you get started building your own custom integrations for n8n. It includes the node linter and other dependencies.
 
 All nodes are npm packages. To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
 
+## Prerequisites
+
+You need the following installed on your development machine:
+
+* [git](https://git-scm.com/downloads)
+* Node.js and npm. Minimum version Node 16. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
+* Install n8n with:
+	```
+	npm install n8n -g
+	```
+* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+
+
+
 ## Using this starter
 
-1. Clone the repo:
+These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+
+1. Copy the repo by clicking **Use this template** and following the steps on GitHub.
+2. Clone your new repo:
     ```
-    git clone https://github.com/n8n-io/n8n-nodes-starter.git
+    git clone https://github.com/<your organisation>/<your-repo-name>.git
     ```
-2. Open the project in your editor.
-3. Browse the examples in `/nodes`. Modify the examples, or replace them with your own nodes.
-4. Update the `package.json` to match your details.
-5. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
-6. Publish your package to npm. More information on the links below.
+3. Run `npm i` to install dependencies.
+4. Open the project in your editor.
+5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
+6. Update the `package.json` to match your details.
+7. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
+8. Publish your package to npm.
 
 ## More information
 
