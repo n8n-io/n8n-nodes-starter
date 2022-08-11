@@ -1,5 +1,10 @@
 import { IExecuteFunctions } from 'n8n-core';
-import { INodeExecutionData, INodeType, INodeTypeDescription, NodeOperationError } from 'n8n-workflow';
+import {
+	INodeExecutionData,
+	INodeType,
+	INodeTypeDescription,
+	NodeOperationError,
+} from 'n8n-workflow';
 
 export class ExampleNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -10,7 +15,6 @@ export class ExampleNode implements INodeType {
 		description: 'Basic Example Node',
 		defaults: {
 			name: 'Example Node',
-			color: '#772244',
 		},
 		inputs: ['main'],
 		outputs: ['main'],
@@ -48,11 +52,10 @@ export class ExampleNode implements INodeType {
 
 				item.json['myString'] = myString;
 			} catch (error) {
-
 				// This node should never fail but we want to showcase how
 				// to handle errors.
 				if (this.continueOnFail()) {
-					items.push({json: this.getInputData(itemIndex)[0].json, error});
+					items.push({ json: this.getInputData(itemIndex)[0].json, error, pairedItem: itemIndex });
 				} else {
 					// Adding `itemIndex` allows other workflows to handle this error
 					if (error.context) {
@@ -66,7 +69,6 @@ export class ExampleNode implements INodeType {
 					});
 				}
 			}
-
 		}
 
 		return this.prepareOutputData(items);

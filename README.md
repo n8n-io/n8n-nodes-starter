@@ -2,9 +2,11 @@
 
 # n8n-nodes-starter
 
-This repo contains example nodes to help you get started building your own custom integrations for n8n. It includes the node linter and other dependencies.
 
-All nodes are npm packages. To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+This repo contains example nodes to help you get started building your own custom integrations for [n8n](n8n.io). It includes the node linter and other dependencies.
+
+
+To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
 
 ## Prerequisites
 
@@ -22,9 +24,10 @@ You need the following installed on your development machine:
 
 ## Using this starter
 
+
 These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
 
-1. Copy the repo by clicking **Use this template** and following the steps on GitHub.
+1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
 2. Clone your new repo:
     ```
     git clone https://github.com/<your organisation>/<your-repo-name>.git
@@ -34,7 +37,7 @@ These are the basic steps for working with the starter. For detailed guidance on
 5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
 6. Update the `package.json` to match your details.
 7. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
-8. Publish your package to npm.
+8. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
 
 ## More information
 

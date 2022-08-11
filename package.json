@@ -1,34 +1,36 @@
 {
-  "name": "n8n-nodes-starter",
+  "name": "n8n-nodes-<...>",
   "version": "0.1.0",
-  "description": "Example starter module for custom n8n nodes.",
+  "description": "",
   "keywords": [
     "n8n-community-node-package"
   ],
   "license": "MIT",
-  "homepage": "https://n8n.io",
+  "homepage": "",
   "author": {
-    "name": "Jan Oberhauser",
-    "email": "jan@n8n.io"
+    "name": "",
+    "email": ""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/n8n-io/n8n-nodes-starter.git"
+    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
   },
   "main": "index.js",
   "scripts": {
     "build": "tsc && gulp build:icons",
     "dev": "tsc --watch",
     "format": "prettier nodes credentials --write",
-    "lint": "tslint -p tsconfig.json -c tslint.json; eslint nodes credentials package.json",
-    "lintfix": "tslint --fix -p tsconfig.json -c tslint.json; eslint nodes credentials package.json --fix"
+    "lint": "tslint -p tsconfig.json -c tslint.json && eslint nodes credentials package.json",
+    "lintfix": "tslint --fix -p tsconfig.json -c tslint.json && eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
   },
   "files": [
     "dist"
   ],
   "n8n": {
+    "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentials.credentials.js",
+      "dist/credentials/ExampleCredentialsApi.credentials.js",
       "dist/credentials/HttpBinApi.credentials.js"
     ],
     "nodes": [
@@ -40,10 +42,10 @@
     "@types/express": "^4.17.6",
     "@types/request-promise-native": "~1.0.15",
     "@typescript-eslint/parser": "^5.29.0",
-    "eslint-plugin-n8n-nodes-base": "~1.1.1",
+    "eslint-plugin-n8n-nodes-base": "^1.5.4",
     "gulp": "^4.0.2",
-    "n8n-core": "^0.124.0",
-    "n8n-workflow": "^0.106.0",
+    "n8n-core": "^0.125.0",
+    "n8n-workflow": "^0.107.0",
     "prettier": "^2.7.1",
     "tslint": "^6.1.2",
     "typescript": "~4.6.0"
