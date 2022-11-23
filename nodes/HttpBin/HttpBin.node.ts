@@ -12,7 +12,6 @@ export class HttpBin implements INodeType {
 		description: 'Interact with HttpBin API',
 		defaults: {
 			name: 'HttpBin',
-			color: '#3b4151',
 		},
 		inputs: ['main'],
 		outputs: ['main'],
