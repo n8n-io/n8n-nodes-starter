@@ -1,3 +1,6 @@
+/**
+ * @type {import('@types/eslint').ESLint.ConfigData}
+ */
 module.exports = {
 	root: true,
 
@@ -8,17 +11,14 @@ module.exports = {
 	},
 
 	parser: '@typescript-eslint/parser',
+
 	parserOptions: {
 		project: ['./tsconfig.json'],
 		sourceType: 'module',
 		extraFileExtensions: ['.json'],
 	},
-	ignorePatterns: [
-		'.eslintrc.js',
-		'**/*.js',
-		'**/node_modules/**',
-		'**/dist/**',
-	],
+
+	ignorePatterns: ['.eslintrc.js', '**/*.js', '**/node_modules/**', '**/dist/**'],
 
 	overrides: [
 		{
@@ -27,7 +27,7 @@ module.exports = {
 			extends: ['plugin:n8n-nodes-base/community'],
 			rules: {
 				'n8n-nodes-base/community-package-json-name-still-default': 'off',
-			}
+			},
 		},
 		{
 			files: ['./credentials/**/*.ts'],
