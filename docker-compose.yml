@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  n8n:
+    image: n8n-custom-nodes
+    restart: unless-stopped
+    build: .
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+      - N8N_LOG_LEVEL=debug
+    volumes:
+      - n8n-data:/home/node/.n8n
+
+volumes:
+  n8n-data:
+    name: n8n-data
