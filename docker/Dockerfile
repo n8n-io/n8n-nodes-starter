@@ -1,6 +1,6 @@
 FROM docker.n8n.io/n8nio/n8n:latest AS target
 
-FROM node:19-alpine AS build
+FROM node:18-alpine AS build
 RUN npm i npm@latest -g
 WORKDIR /build
 COPY . .
@@ -11,7 +11,7 @@ FROM target as final
 WORKDIR /custom-nodes
 
 COPY --from=build /build .
-COPY --from=build /build/run.sh /run.sh
+COPY --from=build /build/docker/run.sh /run.sh
 
 WORKDIR /custom-nodes
 USER root

@@ -4,7 +4,9 @@ services:
   n8n:
     image: n8n-custom-nodes
     restart: unless-stopped
-    build: .
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
     ports:
       - "5678:5678"
     environment:
