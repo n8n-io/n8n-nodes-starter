@@ -11,15 +11,15 @@
     "name": "",
     "email": ""
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+  },
   "engines": {
     "node": ">=18.10",
     "pnpm": ">=9.1"
   },
   "packageManager": "pnpm@9.1.4",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
-  },
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -45,12 +45,13 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "~5.45",
-    "eslint-plugin-n8n-nodes-base": "^1.11.0",
+    "@typescript-eslint/parser": "^7.15.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.1",
     "gulp": "^4.0.2",
     "n8n-workflow": "*",
-    "prettier": "^2.7.1",
-    "typescript": "~4.8.4"
+    "prettier": "^3.3.2",
+    "typescript": "^5.5.3"
   },
   "peerDependencies": {
     "n8n-workflow": "*"
