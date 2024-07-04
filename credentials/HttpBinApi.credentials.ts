@@ -15,6 +15,9 @@ export class HttpBinApi implements ICredentialType {
 			name: 'token',
 			type: 'string',
 			default: '',
+			typeOptions: {
+				password: true,
+			}
 		},
 		{
 			displayName: 'Domain',
