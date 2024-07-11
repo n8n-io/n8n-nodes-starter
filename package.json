@@ -16,7 +16,7 @@
     "url": "https://github.com/<...>/n8n-nodes-<...>.git"
   },
   "engines": {
-    "node": ">=18.10",
+    "node": ">=18.17",
     "pnpm": ">=9.1"
   },
   "packageManager": "pnpm@9.1.4",
@@ -45,10 +45,10 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^7.15.0",
-    "eslint": "^8.56.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "eslint": "^8.57.0",
     "eslint-plugin-n8n-nodes-base": "^1.16.1",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "n8n-workflow": "*",
     "prettier": "^3.3.2",
     "typescript": "^5.5.3"
