@@ -1,10 +1,10 @@
 {
 	"compilerOptions": {
 		"strict": true,
-		"module": "commonjs",
-		"moduleResolution": "node",
+		"module": "preserve",
 		"target": "es2019",
 		"lib": ["es2019", "es2020", "es2022.error"],
+		"types": ["node"],
 		"removeComments": true,
 		"useUnknownInCatchVariables": false,
 		"forceConsistentCasingInFileNames": true,
