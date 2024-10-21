@@ -1,10 +1,10 @@
-import {
+import type {
 	IExecuteFunctions,
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
-	NodeOperationError,
 } from 'n8n-workflow';
+import { NodeConnectionType, NodeOperationError } from 'n8n-workflow';
 
 export class ExampleNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -16,8 +16,8 @@ export class ExampleNode implements INodeType {
 		defaults: {
 			name: 'Example Node',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionType.Main],
+		outputs: [NodeConnectionType.Main],
 		properties: [
 			// Node properties which the user gets displayed and
 			// can change on the node.
@@ -50,7 +50,7 @@ export class ExampleNode implements INodeType {
 				myString = this.getNodeParameter('myString', itemIndex, '') as string;
 				item = items[itemIndex];
 
-				item.json['myString'] = myString;
+				item.json.myString = myString;
 			} catch (error) {
 				// This node should never fail but we want to showcase how
 				// to handle errors.
@@ -71,6 +71,6 @@ export class ExampleNode implements INodeType {
 			}
 		}
 
-		return this.prepareOutputData(items);
+		return [items];
 	}
 }
