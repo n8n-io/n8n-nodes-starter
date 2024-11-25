@@ -1,0 +1,9 @@
+[
+  {
+    "name": "n8n-nodes-execute-code",
+    "version": "0.1.4",
+    "author": "tuananhit1612",
+    "description": "Execute programming code submissions using Judge0 API.",
+    "link": "https://www.npmjs.com/package/n8n-nodes-execute-code"
+  }
+]
