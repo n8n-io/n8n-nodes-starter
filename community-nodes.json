@@ -4,6 +4,6 @@
     "version": "0.1.4",
     "author": "HutechFoss",
     "description": "A custom n8n node to clean and preprocess data using Recursive Feature Elimination (RFE) powered by Python.",
-    "link": "https://www.npmjs.com/package/n8n-nodes-execute-code"
+    "link": "https://www.npmjs.com/package/n8n-nodes-clean-data"
   }
 ]
