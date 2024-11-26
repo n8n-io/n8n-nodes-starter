@@ -1,9 +1,9 @@
 [
   {
-    "name": "n8n-nodes-execute-code",
+    "name": "n8n-nodes-clean-data",
     "version": "0.1.4",
-    "author": "tuananhit1612",
-    "description": "Execute programming code submissions using Judge0 API.",
+    "author": "HutechFoss",
+    "description": "A custom n8n node to clean and preprocess data using Recursive Feature Elimination (RFE) powered by Python.",
     "link": "https://www.npmjs.com/package/n8n-nodes-execute-code"
   }
 ]
