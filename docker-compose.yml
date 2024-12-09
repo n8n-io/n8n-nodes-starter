@@ -1,0 +1,13 @@
+version: '3'
+services:
+  n8n:
+    build: .
+    ports:
+      - "5678:5678"
+    environment:
+      - WEBHOOK_URL=https://studious-space-train-97jp77wrwvjq27rvr-5678.app.github.dev/
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=usuario
+      - N8N_BASIC_AUTH_PASSWORD=contraseña
+      - N8N_PORT=5678
+      - N8N_LOGGING_LEVEL=debug
