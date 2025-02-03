@@ -44,9 +44,6 @@
       "dist/nodes/HttpBin/HttpBin.node.js"
     ]
   },
-  "dependencies": {
-    "n8n-workflow": "*"
-  },
   "devDependencies": {
     "@typescript-eslint/parser": "^7.15.0",
     "eslint": "^8.56.0",
