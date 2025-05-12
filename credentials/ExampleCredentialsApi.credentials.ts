@@ -8,6 +8,9 @@ import {
 export class ExampleCredentialsApi implements ICredentialType {
 	name = 'exampleCredentialsApi';
 	displayName = 'Example Credentials API';
+
+	documentationUrl = 'https://your-docs-url';
+
 	properties: INodeProperties[] = [
 		// The credentials to get from user and save encrypted.
 		// Properties can be defined exactly in the same way
