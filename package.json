@@ -1,19 +1,20 @@
 {
-  "name": "n8n-nodes-<...>",
-  "version": "0.1.0",
-  "description": "",
+  "name": "n8n-nodes-resend",
+  "version": "1.0.0",
+  "description": "Resend n8n node",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "resend"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/SilkePilon/n8n-nodes-resend/",
   "author": {
-    "name": "",
+    "name": "SilkePilon",
     "email": ""
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+    "url": "https://github.com/SilkePilon/n8n-nodes-resend/"
   },
   "engines": {
     "node": ">=20.15"
@@ -34,11 +35,14 @@
     "n8nNodesApiVersion": 1,
     "credentials": [
       "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/HttpBinApi.credentials.js",
+      "dist/credentials/ResendApi.credentials.js"
     ],
     "nodes": [
       "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
+      "dist/nodes/HttpBin/HttpBin.node.js",
+      "dist/nodes/Resend/Resend.node.js",
+      "dist/nodes/Resend/ResendTrigger.node.js"
     ]
   },
   "devDependencies": {
