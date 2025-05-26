@@ -51,5 +51,8 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
+  },
+  "dependencies": {
+    "svix": "^1.22.1"
   }
 }
