@@ -31,7 +31,7 @@ These are the basic steps for working with the starter. For detailed guidance on
 4. Open the project in your editor.
 5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
 6. Update the `package.json` to match your details.
-7. Run `npm lint` to check for errors or `npm lintfix` to automatically fix errors when possible.
+7. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
 8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
 9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
 10. Update the LICENSE file to use your details.
