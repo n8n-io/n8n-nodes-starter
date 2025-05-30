@@ -5,7 +5,7 @@ export class HttpBin implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'HttpBin',
 		name: 'httpBin',
-		icon: 'file:httpbin.svg',
+		icon: { light: 'file:httpbin.svg', dark: 'file:httpbin.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
@@ -15,6 +15,7 @@ export class HttpBin implements INodeType {
 		},
 		inputs: [NodeConnectionType.Main],
 		outputs: [NodeConnectionType.Main],
+		usableAsTool: true,
 		credentials: [
 			{
 				name: 'httpbinApi',
