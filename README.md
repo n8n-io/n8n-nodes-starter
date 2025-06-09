@@ -1,48 +1,57 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# Outgrow Trigger Node for n8n
 
-# n8n-nodes-starter
+[![n8n Community Node](https://img.shields.io/badge/n8n-Community%20Node-green.svg)](https://n8n.io/integrations)
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](https://n8n.io). It includes the node linter and other dependencies.
+Trigger node that fetches leads from Outgrow calculators at configurable intervals.
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+![Outgrow Trigger Node Screenshot](./outgrow-node-screenshot.png) *(Optional: Add screenshot later)*
 
-If you would like your node to be available on n8n cloud you can also [submit your node for verification](https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/).
+## Features
+
+- 🕒 **Polling API**: Checks for new leads at customizable intervals (default: 5 minutes)
+- 📋 **Calculator Selection**: Dynamic dropdown of available calculators
+- 🔔 **Smart Notifications**: Clear "no leads" messages in the UI
+- ⚙️ **Manual Trigger**: Instant API calls for testing
 
 ## Prerequisites
 
-You need the following installed on your development machine:
+- Outgrow account with API access
+- API key from [Outgrow Settings](https://app.outgrow.co/settings/api)
 
-* [git](https://git-scm.com/downloads)
-* Node.js and npm. Minimum version Node 20. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-  ```
-  npm install n8n -g
-  ```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+## Installation
 
-## Using this starter
+1. Add the node to your n8n instance
+2. Configure Outgrow API credentials:
+   - Navigate to **Credentials > Add New > Outgrow API**
+   - Enter your API key
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+## Node Configuration
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-   ```
-   git clone https://github.com/<your organization>/<your-repo-name>.git
-   ```
-3. Run `npm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+### Parameters
+| Field               | Required | Description                                                                 |
+|---------------------|----------|-----------------------------------------------------------------------------|
+| **Calculator**      | Yes      | Select which Outgrow calculator to monitor                                  |
+| **Polling Interval**| No       | Frequency (in minutes) to check for new leads (default: 5)                  |
 
-## More information
+## Usage Examples
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
-
-## License
-
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+### Basic Automation
+```json
+{
+  "workflow": {
+    "nodes": [
+      {
+        "parameters": {
+          "calcId": "{{CALCULATOR_ID}}",
+          "pollingInterval": 10
+        },
+        "name": "Outgrow Trigger",
+        "type": "outgrowTrigger",
+        "typeVersion": 1
+      },
+      {
+        // Connect to other nodes (Email, Slack, etc.)
+      }
+    ]
+  }
+}
