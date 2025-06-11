@@ -1,23 +1,21 @@
 import {
-	IAuthenticateGeneric,
-	ICredentialTestRequest,
+	// IAuthenticateGeneric, // Removed as 'authenticate' block is removed
+	// ICredentialTestRequest, // Removed as 'test' block is removed
 	ICredentialType,
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class ExampleCredentialsApi implements ICredentialType {
-	name = 'exampleCredentialsApi';
-	displayName = 'Example Credentials API';
+// import * as sunoApi from '../../utils/sunoApi'; // Would be used for a real test
 
-	documentationUrl = 'https://your-docs-url';
+export class SunoApi implements ICredentialType { // Renamed class
+	name = 'sunoApi'; // Renamed
+	displayName = 'Suno API'; // Renamed
+	documentationUrl = 'https://suno.ai/'; // Updated URL
 
 	properties: INodeProperties[] = [
-		// The credentials to get from user and save encrypted.
-		// Properties can be defined exactly in the same way
-		// as node properties.
 		{
-			displayName: 'User Name',
-			name: 'username',
+			displayName: 'Email',
+			name: 'email',
 			type: 'string',
 			default: '',
 		},
@@ -32,28 +30,12 @@ export class ExampleCredentialsApi implements ICredentialType {
 		},
 	];
 
-	// This credential is currently not used by any node directly
-	// but the HTTP Request node can use it to make requests.
-	// The credential is also testable due to the `test` property below
-	authenticate: IAuthenticateGeneric = {
-		type: 'generic',
-		properties: {
-			auth: {
-				username: '={{ $credentials.username }}',
-				password: '={{ $credentials.password }}',
-			},
-			qs: {
-				// Send this as part of the query string
-				n8n: 'rocks',
-			},
-		},
-	};
+	// The 'authenticate' object is removed for this phase.
+	// Authentication will be handled by functions in utils/sunoApi.ts.
+	// authenticate: IAuthenticateGeneric = { ... };
 
-	// The block below tells how this credential can be tested
-	test: ICredentialTestRequest = {
-		request: {
-			baseURL: 'https://example.com/',
-			url: '',
-		},
-	};
+	// The 'test' object is removed for this phase.
+	// It will be added back when actual API endpoints for testing are known
+	// or if a more suitable mock test can be devised without calling sunoApi.ts directly.
+	// test: ICredentialTestRequest = { ... };
 }

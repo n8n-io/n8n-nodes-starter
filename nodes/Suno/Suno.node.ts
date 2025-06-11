@@ -3,13 +3,12 @@ import type {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
-	// Assuming INodeProperties is needed for properties definition
 	INodeProperties,
 } from 'n8n-workflow';
 import { NodeConnectionType, NodeOperationError } from 'n8n-workflow';
 
-// TODO: Import functions from sunoApi.ts when they are implemented
-// import * as sunoApi from '../../utils/sunoApi';
+import * as sunoApi from '../../utils/sunoApi';
+import type { SunoPromptOptions } from '../../interfaces/SunoTypes';
 
 export class SunoNode implements INodeType {
 	description: INodeTypeDescription = {
@@ -27,7 +26,7 @@ export class SunoNode implements INodeType {
 		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
-				name: 'sunoApi', // Matches the name in SunoApi.credentials.ts
+				name: 'sunoApi',
 				required: true,
 			},
 		],
@@ -38,6 +37,12 @@ export class SunoNode implements INodeType {
 				type: 'options',
 				noDataExpression: true,
 				options: [
+					{
+						name: 'Login',
+						value: 'login',
+						description: 'Perform login to Suno API (for testing)',
+						action: 'Login',
+					},
 					{
 						name: 'Generate Song from Prompt',
 						value: 'generateSongFromPrompt',
@@ -71,12 +76,37 @@ export class SunoNode implements INodeType {
 				],
 				default: 'generateSongFromPrompt',
 			},
+			// Properties for 'login' (if not using credentials directly for this action)
+			{
+				displayName: 'Email (for Login Operation)',
+				name: 'email',
+				type: 'string',
+				default: '',
+				displayOptions: {
+					show: {
+						operation: ['login'],
+					},
+				},
+			},
+			{
+				displayName: 'Password (for Login Operation)',
+				name: 'password',
+				type: 'string',
+				typeOptions: { password: true },
+				default: '',
+				displayOptions: {
+					show: {
+						operation: ['login'],
+					},
+				},
+			},
 			// Properties for 'generateSongFromPrompt'
 			{
 				displayName: 'Prompt',
 				name: 'prompt',
 				type: 'string',
 				default: '',
+				required: true,
 				placeholder: 'e.g., Epic orchestral score for a space battle',
 				description: 'The text prompt to generate music from',
 				displayOptions: {
@@ -85,6 +115,8 @@ export class SunoNode implements INodeType {
 					},
 				},
 			},
+			// TODO: Add more options for prompt generation if desired
+			// e.g., style, instrumental, mood
 			// Properties for 'getTrackStatus' and 'downloadTrack'
 			{
 				displayName: 'Track ID',
@@ -115,68 +147,134 @@ export class SunoNode implements INodeType {
 					},
 				},
 			},
-		] as INodeProperties[], // Cast to INodeProperties[]
+			{
+				displayName: 'Binary Property Name (for Download)',
+				name: 'binaryPropertyName',
+				type: 'string',
+				default: 'sunoTrackAudio',
+				description: 'Name of the binary property where audio data will be stored for download operation.',
+				displayOptions: {
+					show: {
+						operation: ['downloadTrack'],
+					},
+				},
+			},
+		] as INodeProperties[],
 	};
 
 	/**
-	 * Placeholder method for generating a song from a prompt.
+	 * Performs login to the Suno API.
+	 * @param {IExecuteFunctions} this - The execution context.
+	 * @returns {Promise<INodeExecutionData[][]>}
+	 */
+	async login(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+		const email = this.getNodeParameter('email', 0, '') as string;
+		const password = this.getNodeParameter('password', 0, '') as string;
+		try {
+			const response = await sunoApi.loginWithCredentials(email, password);
+			return [this.helpers.returnJsonArray([response])];
+		} catch (error) {
+			if (error instanceof Error) {
+				throw new NodeOperationError(this.getNode(), error, { itemIndex: 0 });
+			}
+			throw new NodeOperationError(this.getNode(), new Error(String(error)), { itemIndex: 0 });
+		}
+	}
+
+	/**
+	 * Generates a song from a prompt using the Suno API.
 	 * @param {IExecuteFunctions} this - The execution context.
 	 * @returns {Promise<INodeExecutionData[][]>}
 	 */
 	async generateSongFromPrompt(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		const prompt = this.getNodeParameter('prompt', 0, '') as string;
-		// TODO: Call the appropriate sunoApi.ts function (sunoApi.submitPrompt) and handle response
-		console.log('Executing generateSongFromPrompt with prompt:', prompt);
-		// For now, return empty data
-		return [this.prepareOutputData([])];
+		const promptText = this.getNodeParameter('prompt', 0, '') as string;
+		// const options: SunoPromptOptions = {}; // TODO: Get from node parameters if added
+		try {
+			const job = await sunoApi.submitPrompt(promptText /*, options */);
+			return [this.helpers.returnJsonArray([job])];
+		} catch (error) {
+			if (error instanceof Error) {
+				throw new NodeOperationError(this.getNode(), error, { itemIndex: 0 });
+			}
+			throw new NodeOperationError(this.getNode(), new Error(String(error)), { itemIndex: 0 });
+		}
 	}
 
 	/**
-	 * Placeholder method for uploading a track reference.
+	 * Uploads a track reference to the Suno API.
 	 * @param {IExecuteFunctions} this - The execution context.
 	 * @returns {Promise<INodeExecutionData[][]>}
 	 */
 	async uploadTrackReference(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const filePath = this.getNodeParameter('filePath', 0, '') as string;
-		// TODO: Call the appropriate sunoApi.ts function (sunoApi.uploadReferenceTrack) and handle response
-		console.log('Executing uploadTrackReference with filePath:', filePath);
-		return [this.prepareOutputData([])];
+		try {
+			// TODO: Add options if necessary
+			const result = await sunoApi.uploadReferenceTrack(filePath);
+			return [this.helpers.returnJsonArray([result])];
+		} catch (error) {
+			if (error instanceof Error) {
+				throw new NodeOperationError(this.getNode(), error, { itemIndex: 0 });
+			}
+			throw new NodeOperationError(this.getNode(), new Error(String(error)), { itemIndex: 0 });
+		}
 	}
 
 	/**
-	 * Placeholder method for getting track status.
+	 * Gets the status of a track from the Suno API.
 	 * @param {IExecuteFunctions} this - The execution context.
 	 * @returns {Promise<INodeExecutionData[][]>}
 	 */
 	async getTrackStatus(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const trackId = this.getNodeParameter('trackId', 0, '') as string;
-		// TODO: Call the appropriate sunoApi.ts function (sunoApi.pollJobStatus or similar) and handle response
-		console.log('Executing getTrackStatus with trackId:', trackId);
-		return [this.prepareOutputData([])];
+		try {
+			const status = await sunoApi.pollJobStatus(trackId);
+			return [this.helpers.returnJsonArray([status])];
+		} catch (error) {
+			if (error instanceof Error) {
+				throw new NodeOperationError(this.getNode(), error, { itemIndex: 0 });
+			}
+			throw new NodeOperationError(this.getNode(), new Error(String(error)), { itemIndex: 0 });
+		}
 	}
 
 	/**
-	 * Placeholder method for downloading a track.
+	 * Downloads a track from the Suno API.
 	 * @param {IExecuteFunctions} this - The execution context.
 	 * @returns {Promise<INodeExecutionData[][]>}
 	 */
 	async downloadTrack(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const trackId = this.getNodeParameter('trackId', 0, '') as string;
-		// TODO: Call the appropriate sunoApi.ts function (sunoApi.downloadTrack) and handle response
-		// TODO: Consider how to handle binary data output in n8n
-		console.log('Executing downloadTrack with trackId:', trackId);
-		return [this.prepareOutputData([])];
+		const binaryPropertyName = this.getNodeParameter('binaryPropertyName', 0, 'sunoTrackAudio') as string;
+		try {
+			const audioBuffer = await sunoApi.downloadTrack(trackId);
+			const executionData = this.helpers.returnJsonArray([{ trackId, message: 'Audio data attached in binary property.' }])[0];
+			if (executionData.json) { // Ensure json property exists
+				executionData.binary = { [binaryPropertyName]: await this.helpers.prepareBinaryData(audioBuffer, binaryPropertyName + '.mp3') };
+			}
+			return [[executionData]];
+		} catch (error) {
+			if (error instanceof Error) {
+				throw new NodeOperationError(this.getNode(), error, { itemIndex: 0 });
+			}
+			throw new NodeOperationError(this.getNode(), new Error(String(error)), { itemIndex: 0 });
+		}
 	}
 
 	/**
-	 * Placeholder method for listing previous songs.
+	 * Lists previous songs from the Suno API.
 	 * @param {IExecuteFunctions} this - The execution context.
 	 * @returns {Promise<INodeExecutionData[][]>}
 	 */
 	async listPreviousSongs(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		// TODO: Call the appropriate sunoApi.ts function (sunoApi.listPreviousSongs) and handle response
-		console.log('Executing listPreviousSongs');
-		return [this.prepareOutputData([])];
+		try {
+			const songs = await sunoApi.listPreviousSongs();
+			return [this.helpers.returnJsonArray(songs)];
+		} catch (error) {
+			if (error instanceof Error) {
+				throw new NodeOperationError(this.getNode(), error, { itemIndex: 0 });
+			}
+			throw new NodeOperationError(this.getNode(), new Error(String(error)), { itemIndex: 0 });
+		}
 	}
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
@@ -184,6 +282,8 @@ export class SunoNode implements INodeType {
 
 		try {
 			switch (operation) {
+				case 'login':
+					return this.login(this);
 				case 'generateSongFromPrompt':
 					return this.generateSongFromPrompt(this);
 				case 'uploadTrackReference':
@@ -198,14 +298,11 @@ export class SunoNode implements INodeType {
 					throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not supported.`);
 			}
 		} catch (error) {
-			// This node should use NodeOperationError when an error occurs directly within this node's execution logic
 			if (this.continueOnFail()) {
-				// Return error data as per n8n's guidelines for allowing the workflow to continue
-				const item = this.getInputData(0)[0]; // Get the first item if available, otherwise undefined
+				const item = this.getInputData(0)?.[0];
 				return [this.prepareOutputData([{ json: {}, error: error, pairedItem: item ? { item: 0 } : undefined }])];
 			} else {
-				// If not continuing on fail, rethrow the error to halt the workflow
-				throw error; // NodeOperationError should already be structured correctly
+				throw error;
 			}
 		}
 	}
