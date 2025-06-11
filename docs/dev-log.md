@@ -245,3 +245,90 @@ This entry provides an initial review of the project's code quality and style, b
     *   JSDoc usage is generally good, though it needs to be applied to `interfaces/SunoTypes.ts` once populated.
     *   The primary immediate concerns are the **empty `interfaces/SunoTypes.ts` file** and the pervasive `console.log` statements that will need refinement before any production-level code or real API integration.
     *   The current mocked nature of `utils/sunoApi.ts` is well-documented and appropriate for this stage.
+
+## 2024-07-29: Populated Core Type Definitions
+
+The file `interfaces/SunoTypes.ts` has been populated with essential TypeScript interfaces: `SunoAuthResponse`, `SunoJob`, `SunoTrack`, and `SunoPromptOptions`. These definitions include JSDoc comments for each interface and its properties, aiming to provide clarity and type safety for data exchange related to the Suno API. This addresses a key action item from the "Code Quality & Style - Initial Review".
+
+## 2024-07-29: Dependency Analysis
+
+This entry details the project's dependencies as listed in `package.json`.
+
+*   **Production Dependencies:**
+    *   The `package.json` does not list any explicit production `dependencies`. This is typical for n8n nodes where `n8n-workflow` (and `n8n-core`) are treated as peer dependencies.
+
+*   **Peer Dependencies:**
+    *   `n8n-workflow`: `*` (This signifies that the node expects n8n's workflow capabilities to be provided by the host n8n environment, which is the standard operational model for custom nodes.)
+
+*   **Development Dependencies (`devDependencies`):**
+    *   `@typescript-eslint/parser`: `~8.32.0` (Parser that allows ESLint to lint TypeScript code.)
+    *   `eslint`: `^8.57.0` (Core ESLint library for identifying and reporting on patterns in JavaScript/TypeScript.)
+    *   `eslint-plugin-n8n-nodes-base`: `^1.16.3` (An n8n-specific ESLint plugin containing recommended rules for n8n node development.)
+    *   `gulp`: `^5.0.0` (A toolkit for automating painful or time-consuming tasks in development workflow; here, likely for icon management.)
+    *   `prettier`: `^3.5.3` (An opinionated code formatter that enforces a consistent style.)
+    *   `typescript`: `^5.8.2` (The TypeScript language compiler and language service.)
+
+*   **Node Engine:**
+    *   `node`: `>=20.15` (Specifies the minimum Node.js version required to run this project. This is a relatively recent LTS version of Node.js.)
+
+*   **Observations:**
+    *   The project utilizes a standard and modern toolset for TypeScript-based development, including robust linting and formatting tools.
+    *   Gulp's presence is noted for specific build tasks, as seen in the `build` script (`tsc && gulp build:icons`), likely related to n8n's requirements for node icons.
+    *   The specified versions for development dependencies are relatively up-to-date.
+    *   A comprehensive audit for outdated versions or security vulnerabilities would necessitate checking these versions against external databases (e.g., npmjs.com, Snyk, Dependabot alerts if configured). However, the listed versions provide the baseline for such a check.
+    *   The lack of direct production dependencies is standard for n8n community nodes, as they operate within the n8n execution environment.
+
+## 2024-07-29: FSM Analysis - Preliminary Check
+
+This entry conducts a preliminary check for potential Finite State Machines (FSMs) within the current system design.
+
+*   **Potential FSM Candidates:**
+    *   **1. Song Generation Job Lifecycle (within `utils/sunoApi.ts` and observed by `Suno.node.ts` and `SunoTrigger.node.ts`):**
+        *   **Description:** The process of generating a song, from prompt submission to track availability, is inherently stateful. The `utils/sunoApi.ts` (mocked implementation) already simulates this with `SunoJob` states.
+        *   **Identified States (from `SunoJob` type and `pollJobStatus` mock logic):**
+            *   `queued` (Initial state after `submitPrompt`)
+            *   `generating` / `processing` (Intermediate state during generation - `processing` is in `SunoJob` type, `generating` is used in mock logic)
+            *   `complete` (Final success state, `trackId` becomes available)
+            *   `failed` (Final error state)
+        *   **Key Events/Triggers for Transitions:**
+            *   `submitPrompt()` -> `queued`
+            *   Internal Suno AI processing (simulated by polling) -> `generating`/`processing`
+            *   Generation success (simulated by polling) -> `complete`
+            *   Generation error / invalid input (simulated by polling for non-existent job) -> `failed`
+        *   **Relevance:** Modeling this as an FSM is beneficial for:
+            *   Clearly defining the expected lifecycle of a generation job.
+            *   Handling timeouts or retries at specific stages (e.g., if stuck in `generating` for too long).
+            *   Providing more granular status updates to the user via the n8n node.
+            *   The `pollJobStatus` function in `sunoApi.ts` queries and drives the (mocked) state of this FSM. The `SunoTrigger.node.ts` for 'Track Generation Complete' also monitors this.
+
+    *   **2. Trigger State Management for "New Song Available" (within `SunoTrigger.node.ts`):**
+        *   **Description:** The current mock trigger for "New Song Available" simply emits the first song from the `listPreviousSongs()` call. A robust implementation needs to identify *genuinely new* songs. This implies the trigger itself needs to maintain a state (e.g., a list of song IDs seen in the previous poll).
+        *   **Identified States (conceptual):**
+            *   `Polling` (Actively checking for new songs)
+            *   `Idle` (Between polls - managed by n8n scheduler)
+            *   `ProcessingDiff` (After fetching songs, comparing to previous list)
+            *   `EmittingNew` (When new songs are found and being emitted)
+        *   **Key Events/Triggers for Transitions:**
+            *   Poll interval elapses (n8n calls `manualTrigger`) -> `Polling`
+            *   `listPreviousSongs()` returns -> `ProcessingDiff`
+            *   New songs identified -> `EmittingNew`
+            *   Emission complete -> `Idle` (until next poll)
+        *   **Relevance:** While perhaps not a classical FSM in the same way as a job lifecycle, thinking about the trigger's polling cycle in terms of states can help design a more reliable mechanism for detecting new items and managing its own operational state (e.g., last polled timestamp, list of seen IDs). This is less about the Suno API's state and more about the trigger node's internal logic.
+
+*   **Next Steps for FSM (if pursued):**
+    *   For the "Song Generation Job Lifecycle", if the actual Suno API provides clear state indicators, formalizing the FSM in documentation (e.g., using PlantUML or a state table) would be valuable for the `sunoApi.ts` implementation when moving away from mocks.
+    *   For the "New Song Available" trigger, the stateful logic for diffing song lists needs careful design. This might not require a full FSM diagram but rather clear state management variables and logic within the trigger code.
+
+*   **Current Implementation:**
+    *   The mocked `utils/sunoApi.ts` already implements a simplified version of the "Song Generation Job Lifecycle" FSM through the `status` property of `SunoJob` and the logic in `pollJobStatus`.
+    *   The `SunoTrigger.node.ts` for "New Song Available" currently lacks robust state management for detecting new songs, as noted in its mock implementation.
+
+## 2024-07-29: Defined Functional & Non-Functional Requirements
+
+Created `docs/enhancement_requirements.md` and populated it with detailed Functional Requirements (FRs) based on current node capabilities (authentication, music generation, job/track management, triggers) and Non-Functional Requirements (NFRs) covering Reliability, Maintainability, Usability, Performance, Testability, and Security. This document will serve as a basis for guiding further development and roadmap creation.
+
+## 2024-07-29: Proposed Initial Enhancement Roadmap
+
+Created `docs/enhancement_roadmap.md` outlining a 5-milestone plan: 1. Solidify Mock Implementation, 2. Real API Auth & Read Ops, 3. Real API Core Generation, 4. Real API Triggers & Advanced Features, 5. Refinement & Release Prep. This roadmap will guide iterative development. Key immediate tasks for Milestone 1 include addressing `HttpBinApi.credentials.ts` and `console.log` usage.
+
+[end of docs/dev-log.md]
