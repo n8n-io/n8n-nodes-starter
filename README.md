@@ -13,7 +13,7 @@ If you would like your node to be available on n8n cloud you can also [submit yo
 You need the following installed on your development machine:
 
 * Docker and Docker Compose
-* NodeJS and npm
+* NodeJS, npm and pnpm (Execture npm install -g pnpm@latest-10 after installing npm)
 
 Once you have cloned the repository:
 
