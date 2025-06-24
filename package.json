@@ -38,6 +38,7 @@
     ],
     "nodes": [
       "dist/nodes/ExampleNode/ExampleNode.node.js",
+      "dist/nodes/ExampleNode2/ExampleNode2.node.js",
       "dist/nodes/HttpBin/HttpBin.node.js"
     ]
   },
