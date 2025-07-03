@@ -1,5 +1,5 @@
 {
-  "name": "n8n Fitbit Node Development",
+  "name": "Custom n8n Node Development",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
