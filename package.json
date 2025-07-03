@@ -1,19 +1,19 @@
 {
-  "name": "n8n-nodes-<...>",
+  "name": "n8n-nodes-TODO-YOUR-NODE-HERE",
   "version": "0.1.0",
-  "description": "",
+  "description": "TODO YOUR DESCRIPTION HERE",
   "keywords": [
     "n8n-community-node-package"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "TODO",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "TODO",
+    "email": "TODO"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+    "url": "https://github.com/TODO/n8n-nodes-TODO.git"
   },
   "engines": {
     "node": ">=20.15"
@@ -25,7 +25,8 @@
     "format": "prettier nodes credentials --write",
     "lint": "eslint nodes credentials package.json",
     "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
+    "getPackageName": "echo ${npm_package_name}"
   },
   "files": [
     "dist"

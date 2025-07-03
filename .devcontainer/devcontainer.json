@@ -1,0 +1,22 @@
+{
+  "name": "Custom n8n Node Development",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-extra/features/n8n:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-eslint"
+      ]
+    }
+  },
+  "forwardPorts": [3000, 5678],
+  "postCreateCommand": "bash start-n8n-with-custom-node.sh",
+  "remoteUser": "node"
+}
