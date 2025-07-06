@@ -33,13 +33,13 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/HttpBinApi.credentials.js",
+      "dist/credentials/S4DSApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/ExampleNode2/ExampleNode2.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
+      "dist/nodes/HttpBin/HttpBin.node.js",
+      "dist/nodes/S4DSAuth/S4DSAuth.node.js",
+      "dist/nodes/S4DSExample/S4DSExample.node.js"
     ]
   },
   "devDependencies": {
