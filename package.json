@@ -36,8 +36,7 @@
       "dist/credentials/S4DSApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/S4DSAuth/S4DSAuth.node.js",
-      "dist/nodes/S4DSExample/S4DSExample.node.js"
+      "dist/nodes/S4DSMain/S4DSMain.node.js"
     ]
   },
   "devDependencies": {

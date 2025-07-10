@@ -1,0 +1,81 @@
+{
+  "authentication": {
+    "generateToken": {
+      "method": "POST",
+      "endpoint": "/login/generateToken",
+      "description": "Generate authentication token using credentials",
+      "parameters": [],
+      "requiresAuth": false,
+      "response": {
+        "type": "object",
+        "properties": {
+          "token": "string",
+          "token_type": "string",
+          "expires_in": "number"
+        }
+      }
+    }
+  },
+  "products": {
+    "getProductCount": {
+      "method": "GET",
+      "endpoint": "/product/count",
+      "description": "Get the total count of products",
+      "parameters": [],
+      "requiresAuth": true,
+      "response": {
+        "type": "object",
+        "properties": {
+          "count": "number"
+        }
+      }
+    }
+  },
+  "customers": {
+    "getCustomerByDocument": {
+      "method": "GET",
+      "endpoint": "/customer/specificCustomer",
+      "description": "Get customer information by document ID and type",
+      "parameters": [
+        {
+          "name": "documentId",
+          "type": "string",
+          "required": false,
+          "description": "Document ID of the customer",
+          "in": "query"
+        },
+        {
+          "name": "documentType",
+          "type": "string",
+          "required": false,
+          "description": "Type of document (e.g., CC, CE, NIT)",
+          "in": "query"
+        }
+      ],
+      "requiresAuth": true,
+      "response": {
+        "type": "object",
+        "properties": {
+          "customer": "object"
+        }
+      }
+    },
+    "createCustomer": {
+      "method": "POST",
+      "endpoint": "/customer",
+      "description": "Create a new customer",
+      "parameters": [],
+      "requiresAuth": true,
+      "requestBody": {
+        "schema": "SetNewCustomerDTO",
+        "required": true
+      },
+      "response": {
+        "type": "object",
+        "properties": {
+          "customer": "object"
+        }
+      }
+    }
+  }
+} 

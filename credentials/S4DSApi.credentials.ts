@@ -14,7 +14,7 @@ export class S4DSApi implements ICredentialType {
 			type: 'options',
 			options: [
 				{
-					name: 'Demo Test',
+					name: 'Demo TEST',
 					value: 'https://demotest.s4ds.com/demoapi-test',
 				},
 				{
@@ -22,32 +22,20 @@ export class S4DSApi implements ICredentialType {
 					value: 'https://demouat.s4ds.com/demoapi-uat',
 				},
 				{
-					name: 'Demo Production',
-					value: 'https://demoprod.s4ds.com/demoapi-prod',
+					name: 'Demo CORE',
+					value: 'https://demo.s4ds.com/demoapi-core',
 				},
 				{
-					name: 'Cliente 1 Test',
-					value: 'https://cliente1test.s4ds.com/cliente1api-test',
+					name: 'Aquasource TEST',
+					value: 'https://aquasourcetest.s4ds.com/aquasourceapi-test',
 				},
 				{
-					name: 'Cliente 1 UAT',
-					value: 'https://cliente1uat.s4ds.com/cliente1api-uat',
+					name: 'Aquasource UAT',
+					value: 'https://aquasourceuat.s4ds.com/aquasourceapi-uat',
 				},
 				{
-					name: 'Cliente 1 Production',
-					value: 'https://cliente1prod.s4ds.com/cliente1api-prod',
-				},
-				{
-					name: 'Cliente 2 Test',
-					value: 'https://cliente2test.s4ds.com/cliente2api-test',
-				},
-				{
-					name: 'Cliente 2 UAT',
-					value: 'https://cliente2uat.s4ds.com/cliente2api-uat',
-				},
-				{
-					name: 'Cliente 2 Production',
-					value: 'https://cliente2prod.s4ds.com/cliente2api-prod',
+					name: 'Aquasource CORE',
+					value: 'https://aquasource.s4ds.com/aquasourceapi-core',
 				},
 				{
 					name: 'Custom URL',

@@ -1,0 +1,608 @@
+{
+  "SetNewCustomerDTO": {
+    "type": "object",
+    "properties": {
+      "documentType": {
+        "type": "string",
+        "description": "Type of document",
+        "required": false
+      },
+      "docType": {
+        "type": "string",
+        "description": "Document type code",
+        "required": false
+      },
+      "docTypeDesc": {
+        "type": "string",
+        "description": "Document type description",
+        "required": false
+      },
+      "documentId": {
+        "type": "string",
+        "description": "Document ID",
+        "required": false
+      },
+      "newDocumentId": {
+        "type": "string",
+        "description": "New document ID",
+        "required": false
+      },
+      "newDocumentType": {
+        "type": "string",
+        "description": "New document type",
+        "required": false
+      },
+      "verificationDigit": {
+        "type": "string",
+        "description": "Verification digit",
+        "required": false
+      },
+      "internalCode": {
+        "type": "string",
+        "description": "Internal code",
+        "required": false
+      },
+      "customerType": {
+        "type": "string",
+        "description": "Customer type",
+        "required": false
+      },
+      "status": {
+        "type": "string",
+        "description": "Status",
+        "required": false
+      },
+      "customerStatus": {
+        "type": "string",
+        "description": "Customer status",
+        "required": false
+      },
+      "name": {
+        "type": "string",
+        "description": "First name",
+        "required": false
+      },
+      "secondName": {
+        "type": "string",
+        "description": "Second name",
+        "required": false
+      },
+      "lastName": {
+        "type": "string",
+        "description": "Last name",
+        "required": false
+      },
+      "lastName1": {
+        "type": "string",
+        "description": "First last name",
+        "required": false
+      },
+      "lastName2": {
+        "type": "string",
+        "description": "Second last name",
+        "required": false
+      },
+      "email": {
+        "type": "string",
+        "description": "Email address",
+        "required": false
+      },
+      "gender": {
+        "type": "string",
+        "description": "Gender",
+        "required": false
+      },
+      "genderDesc": {
+        "type": "string",
+        "description": "Gender description",
+        "required": false
+      },
+      "language": {
+        "type": "string",
+        "description": "Language",
+        "required": false
+      },
+      "languageCode": {
+        "type": "string",
+        "description": "Language code",
+        "required": false
+      },
+      "username": {
+        "type": "string",
+        "description": "Username",
+        "required": false
+      },
+      "password": {
+        "type": "string",
+        "description": "Password",
+        "required": false
+      },
+      "loginType": {
+        "type": "string",
+        "description": "Login type",
+        "required": false
+      },
+      "roles": {
+        "type": "array",
+        "description": "User roles",
+        "items": {
+          "type": "string"
+        },
+        "required": false
+      },
+      "metadata": {
+        "type": "object",
+        "description": "Metadata del cliente",
+        "required": false
+      },
+      "priceList": {
+        "type": "string",
+        "description": "Price list",
+        "required": false
+      },
+      "shippingAddress": {
+        "type": "object",
+        "description": "Shipping address",
+        "schema": "AddressDTO",
+        "required": false
+      },
+      "homeAddress": {
+        "type": "object",
+        "description": "Home address",
+        "schema": "AddressDTO",
+        "required": false
+      },
+      "phone": {
+        "type": "array",
+        "description": "Phone numbers",
+        "items": {
+          "type": "object",
+          "schema": "PhoneDTO"
+        },
+        "required": false
+      },
+      "birthdate": {
+        "type": "string",
+        "description": "Birth date",
+        "required": false
+      },
+      "sellerId": {
+        "type": "string",
+        "description": "Seller ID",
+        "required": false
+      },
+      "balanceDate": {
+        "type": "string",
+        "description": "Balance date",
+        "required": false
+      },
+      "balance": {
+        "type": "string",
+        "description": "Balance",
+        "required": false
+      },
+      "balanceMoneyFormat": {
+        "type": "string",
+        "description": "Balance money format",
+        "required": false
+      },
+      "paymentTerms": {
+        "type": "string",
+        "description": "Payment terms",
+        "required": false
+      },
+      "creditDays": {
+        "type": "string",
+        "description": "Credit days",
+        "required": false
+      },
+      "creditQuota": {
+        "type": "string",
+        "description": "Credit quota",
+        "required": false
+      },
+      "creditSegment": {
+        "type": "string",
+        "description": "Credit segment",
+        "required": false
+      },
+      "creditStatus": {
+        "type": "string",
+        "description": "Credit status",
+        "required": false
+      },
+      "territorialDivision": {
+        "type": "string",
+        "description": "Territorial division",
+        "required": false
+      },
+      "territoryDescription": {
+        "type": "string",
+        "description": "Territory description",
+        "required": false
+      },
+      "zoneDivisionId": {
+        "type": "string",
+        "description": "Zone division ID",
+        "required": false
+      },
+      "zoneDivisionDesc": {
+        "type": "string",
+        "description": "Zone division description",
+        "required": false
+      },
+      "zoneDivisionCode": {
+        "type": "string",
+        "description": "Zone division code",
+        "required": false
+      },
+      "tdDivisionId": {
+        "type": "string",
+        "description": "TD division ID",
+        "required": false
+      },
+      "tdDivisionCode": {
+        "type": "string",
+        "description": "TD division code",
+        "required": false
+      },
+      "regionDivisionId": {
+        "type": "string",
+        "description": "Region division ID",
+        "required": false
+      },
+      "regionDivisionDescription": {
+        "type": "string",
+        "description": "Region division description",
+        "required": false
+      },
+      "regionDivisionCode": {
+        "type": "string",
+        "description": "Region division code",
+        "required": false
+      },
+      "countryDivisionId": {
+        "type": "string",
+        "description": "Country division ID",
+        "required": false
+      },
+      "countryDivisionCode": {
+        "type": "string",
+        "description": "Country division code",
+        "required": false
+      },
+      "countryDivisionDesc": {
+        "type": "string",
+        "description": "Country division description",
+        "required": false
+      },
+      "bankCode": {
+        "type": "string",
+        "description": "Bank code",
+        "required": false
+      },
+      "bankDescription": {
+        "type": "string",
+        "description": "Bank description",
+        "required": false
+      },
+      "accountType": {
+        "type": "string",
+        "description": "Account type",
+        "required": false
+      },
+      "taxRegime": {
+        "type": "string",
+        "description": "Tax regime",
+        "required": false
+      },
+      "taxRegimeCode": {
+        "type": "string",
+        "description": "Tax regime code",
+        "required": false
+      },
+      "taxRegimeDescription": {
+        "type": "string",
+        "description": "Tax regime description",
+        "required": false
+      },
+      "accountNumber": {
+        "type": "string",
+        "description": "Account number",
+        "required": false
+      },
+      "segment": {
+        "type": "string",
+        "description": "Segment",
+        "required": false
+      },
+      "registration": {
+        "type": "string",
+        "description": "Registration",
+        "required": false
+      },
+      "reactivationDate": {
+        "type": "string",
+        "description": "Reactivation date",
+        "required": false
+      },
+      "referent": {
+        "type": "object",
+        "description": "Referent information",
+        "schema": "ReferentDTO",
+        "required": false
+      },
+      "sponsor": {
+        "type": "object",
+        "description": "Sponsor information",
+        "schema": "SponsorDTO",
+        "required": false
+      },
+      "sync": {
+        "type": "string",
+        "description": "Sync status",
+        "required": false
+      },
+      "currencyId": {
+        "type": "string",
+        "description": "Currency ID",
+        "required": false
+      },
+      "continuity": {
+        "type": "string",
+        "description": "Continuity",
+        "required": false
+      },
+      "accumulatedPoints": {
+        "type": "string",
+        "description": "Accumulated points",
+        "required": false
+      },
+      "rankCode": {
+        "type": "string",
+        "description": "Rank code",
+        "required": false
+      },
+      "rankDescription": {
+        "type": "string",
+        "description": "Rank description",
+        "required": false
+      },
+      "honorificRankCode": {
+        "type": "string",
+        "description": "Honorific rank code",
+        "required": false
+      },
+      "honorificRankDescription": {
+        "type": "string",
+        "description": "Honorific rank description",
+        "required": false
+      },
+      "honorificDate": {
+        "type": "string",
+        "description": "Honorific date",
+        "required": false
+      },
+      "compensationStructure": {
+        "type": "string",
+        "description": "Compensation structure",
+        "required": false
+      },
+      "inactivityCampaigns": {
+        "type": "string",
+        "description": "Inactivity campaigns",
+        "required": false
+      },
+      "commercialStatus": {
+        "type": "string",
+        "description": "Commercial status",
+        "required": false
+      },
+      "desertionDate": {
+        "type": "string",
+        "description": "Desertion date",
+        "required": false
+      },
+      "outstandingCreditBalanceSync": {
+        "type": "string",
+        "description": "Outstanding credit balance sync",
+        "required": false
+      },
+      "outstandingCreditBalanceSyncFormatted": {
+        "type": "string",
+        "description": "Outstanding credit balance sync formatted",
+        "required": false
+      },
+      "notificationType": {
+        "type": "string",
+        "description": "Notification type",
+        "required": false
+      },
+      "needsAuditing": {
+        "type": "string",
+        "description": "Needs auditing",
+        "required": false
+      },
+      "rut": {
+        "type": "string",
+        "description": "RUT",
+        "required": false
+      },
+      "georeference": {
+        "type": "string",
+        "description": "Georeference",
+        "required": false
+      },
+      "warehouseId": {
+        "type": "string",
+        "description": "Warehouse ID",
+        "required": false
+      },
+      "warehouseCode": {
+        "type": "string",
+        "description": "Warehouse code",
+        "required": false
+      },
+      "currency": {
+        "type": "string",
+        "description": "Currency",
+        "required": false
+      },
+      "postalCode": {
+        "type": "string",
+        "description": "Postal code",
+        "required": false
+      },
+      "shippingPostalCode": {
+        "type": "string",
+        "description": "Shipping postal code",
+        "required": false
+      },
+      "tdivisionDescription": {
+        "type": "string",
+        "description": "T division description",
+        "required": false
+      }
+    }
+  },
+  "AddressDTO": {
+    "type": "object",
+    "properties": {
+      "address": {
+        "type": "string",
+        "description": "Address line",
+        "required": false
+      },
+      "address2": {
+        "type": "string",
+        "description": "Address line 2",
+        "required": false
+      },
+      "address3": {
+        "type": "string",
+        "description": "Address line 3",
+        "required": false
+      },
+      "postalCode": {
+        "type": "string",
+        "description": "Postal code",
+        "required": false
+      },
+      "neighborhood": {
+        "type": "string",
+        "description": "Neighborhood",
+        "required": false
+      },
+      "city": {
+        "type": "string",
+        "description": "City",
+        "required": false
+      },
+      "cityCode": {
+        "type": "string",
+        "description": "City code",
+        "required": false
+      },
+      "state": {
+        "type": "string",
+        "description": "State",
+        "required": false
+      },
+      "stateCode": {
+        "type": "string",
+        "description": "State code",
+        "required": false
+      },
+      "country": {
+        "type": "string",
+        "description": "Country",
+        "required": false
+      },
+      "countryCode": {
+        "type": "string",
+        "description": "Country code",
+        "required": false
+      },
+      "addressName": {
+        "type": "string",
+        "description": "Address name",
+        "required": false
+      },
+      "addressDescription": {
+        "type": "string",
+        "description": "Address description",
+        "required": false
+      },
+      "addressMetadata": {
+        "type": "object",
+        "description": "Address metadata",
+        "required": false
+      }
+    }
+  },
+  "PhoneDTO": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "type": "string",
+        "description": "Phone type",
+        "required": false
+      },
+      "countryCode": {
+        "type": "string",
+        "description": "Country code",
+        "required": false
+      },
+      "number": {
+        "type": "string",
+        "description": "Phone number",
+        "required": false
+      },
+      "modifiedAt": {
+        "type": "string",
+        "description": "Modified at timestamp",
+        "required": false
+      }
+    }
+  },
+  "ReferentDTO": {
+    "type": "object",
+    "properties": {
+      "documentId": {
+        "type": "string",
+        "description": "Document ID",
+        "required": false
+      },
+      "docType": {
+        "type": "string",
+        "description": "Document type",
+        "required": false
+      },
+      "docTypeDesc": {
+        "type": "string",
+        "description": "Document type description",
+        "required": false
+      }
+    }
+  },
+  "SponsorDTO": {
+    "type": "object",
+    "properties": {
+      "documentId": {
+        "type": "string",
+        "description": "Document ID",
+        "required": false
+      },
+      "docType": {
+        "type": "string",
+        "description": "Document type",
+        "required": false
+      },
+      "docTypeDesc": {
+        "type": "string",
+        "description": "Document type description",
+        "required": false
+      }
+    }
+  }
+} 

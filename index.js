@@ -1,9 +1,8 @@
-const { S4DSAuth } = require('./dist/nodes/S4DSAuth/S4DSAuth.node.js');
-const { S4DSExample } = require('./dist/nodes/S4DSExample/S4DSExample.node.js');
+const { S4DSMain } = require('./dist/nodes/S4DSMain/S4DSMain.node.js');
 
 const { S4DSApi } = require('./dist/credentials/S4DSApi.credentials.js');
 
 module.exports = {
-	nodes: [S4DSAuth, S4DSExample],
+	nodes: [S4DSMain],
 	credentials: [S4DSApi],
 };
