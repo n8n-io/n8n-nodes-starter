@@ -3,7 +3,7 @@ import { ApiHelper } from './ApiHelper';
 
 export class S4DSMain implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'S4DS',
+		displayName: 'S4DS\'s APIs',
 		name: 's4ds',
 		icon: { light: 'file:logo_generic.png', dark: 'file:logo_generic.png' },
 		group: ['transform'],
@@ -11,7 +11,7 @@ export class S4DSMain implements INodeType {
 		subtitle: '={{$parameter["resource"]}} - {{$parameter["operation"]}}',
 		description: 'S4DS API operations including authentication and product management',
 		defaults: {
-			name: 'S4DS',
+			name: 'S4DS\'s APIs',
 		},
 		inputs: [NodeConnectionType.Main],
 		outputs: [NodeConnectionType.Main],
