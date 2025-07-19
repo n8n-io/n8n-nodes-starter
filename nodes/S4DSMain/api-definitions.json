@@ -76,6 +76,23 @@
           "customer": "object"
         }
       }
+    },
+    "updateCustomer": {
+      "method": "PATCH",
+      "endpoint": "/customer",
+      "description": "Update an existing customer",
+      "parameters": [],
+      "requiresAuth": true,
+      "requestBody": {
+        "schema": "SetNewCustomerDTO",
+        "required": true
+      },
+      "response": {
+        "type": "object",
+        "properties": {
+          "result": "object"
+        }
+      }
     }
   }
 } 

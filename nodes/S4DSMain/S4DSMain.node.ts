@@ -103,7 +103,7 @@ export class S4DSMain implements INodeType {
 						password: credentials.password,
 					};
 				} else if (apiDefinition.requestBody && apiDefinition.requestBody.schema) {
-					// Usar DTO para request body
+					// Usar DTO para request body (POST, PATCH, PUT, etc.)
 					let requestBodyData = this.getNodeParameter('requestBody', i, {});
 					if (typeof requestBodyData === 'string') {
 						try {
