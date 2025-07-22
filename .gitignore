@@ -7,3 +7,4 @@ npm-debug.log*
 yarn.lock
 .vscode/launch.json
 .env
+local-files/*
