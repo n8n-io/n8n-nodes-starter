@@ -9,6 +9,15 @@ import getProductCount from './actions/products/getProductCount.json';
 import getCustomerByDocument from './actions/customers/getCustomerByDocument.json';
 import createCustomer from './actions/customers/createCustomer.json';
 import updateCustomer from './actions/customers/updateCustomer.json';
+import cloneUsername from './actions/customers/cloneUsername.json';
+import customerInfo from './actions/customers/customerInfo.json';
+import getAdvancedSearch from './actions/customers/getAdvancedSearch.json';
+import getConsultantInformation from './actions/customers/getConsultantInformation.json';
+import getDocumentIdByAutocomplete from './actions/customers/getDocumentIdByAutocomplete.json';
+import getOffSyncCustomers from './actions/customers/getOffSyncCustomers.json';
+import getOrdersByCustomer from './actions/customers/getOrdersByCustomer.json';
+import getUserByToken from './actions/customers/getUserByToken.json';
+import inactiveCustomer from './actions/customers/inactiveCustomer.json';
 
 export interface ApiDefinition {
 	method: string;
@@ -22,7 +31,7 @@ export interface ApiDefinition {
 	};
 	response: {
 		type: string;
-		properties: Record<string, string>;
+		properties: Record<string, any>;
 	};
 }
 
@@ -62,6 +71,15 @@ const staticApiDefinitions: Record<string, Record<string, ApiDefinition>> = {
     getCustomerByDocument: getCustomerByDocument as ApiDefinition,
     createCustomer: createCustomer as ApiDefinition,
     updateCustomer: updateCustomer as ApiDefinition,
+    cloneUsername: cloneUsername as ApiDefinition,
+    customerInfo: customerInfo as ApiDefinition,
+    getAdvancedSearch: getAdvancedSearch as ApiDefinition,
+    getConsultantInformation: getConsultantInformation as ApiDefinition,
+    getDocumentIdByAutocomplete: getDocumentIdByAutocomplete as ApiDefinition,
+    getOffSyncCustomers: getOffSyncCustomers as ApiDefinition,
+    getOrdersByCustomer: getOrdersByCustomer as ApiDefinition,
+    getUserByToken: getUserByToken as ApiDefinition,
+    inactiveCustomer: inactiveCustomer as ApiDefinition,
   },
 };
 
