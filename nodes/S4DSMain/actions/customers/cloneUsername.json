@@ -1,0 +1,18 @@
+{
+  "name": "cloneUsername",
+  "method": "POST",
+  "endpoint": "/customer/cloneUsername",
+  "description": "Clone a username from one user to another.",
+  "parameters": [],
+  "requiresAuth": true,
+  "requestBody": {
+    "schema": "CloneUserDTO",
+    "required": true
+  },
+  "response": {
+    "type": "object",
+    "properties": {
+      "result": "object"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "name": "customerInfo",
+  "method": "GET",
+  "endpoint": "/customer/info",
+  "description": "Get customer information.",
+  "parameters": [
+    {
+      "name": "personId",
+      "in": "query",
+      "type": "array",
+      "required": false,
+      "description": "Person ID filter",
+      "items": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "documentId",
+      "in": "query",
+      "type": "array",
+      "required": false,
+      "description": "Document ID filter",
+      "items": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "documentType",
+      "in": "query",
+      "type": "array",
+      "required": false,
+      "description": "Document type filter",
+      "items": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "roles",
+      "in": "query",
+      "type": "array",
+      "required": false,
+      "description": "Roles filter",
+      "items": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "orderBy",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Order by field"
+    },
+    {
+      "name": "quantity",
+      "in": "query",
+      "type": "integer",
+      "required": false,
+      "description": "Quantity limit (default: 100)",
+      "default": 100
+    }
+  ],
+  "requiresAuth": true,
+  "response": {
+    "type": "object",
+    "properties": {
+      "customers": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

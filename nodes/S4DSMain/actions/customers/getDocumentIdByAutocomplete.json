@@ -1,0 +1,27 @@
+{
+  "name": "getDocumentIdByAutocomplete",
+  "method": "GET",
+  "endpoint": "/customer/search/{user}",
+  "description": "Get document ID by autocomplete user search.",
+  "parameters": [
+    {
+      "name": "user",
+      "in": "path",
+      "type": "string",
+      "required": true,
+      "description": "User search term"
+    }
+  ],
+  "requiresAuth": true,
+  "response": {
+    "type": "object",
+    "properties": {
+      "results": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

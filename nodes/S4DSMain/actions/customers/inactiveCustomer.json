@@ -1,0 +1,18 @@
+{
+  "name": "inactiveCustomer",
+  "method": "DELETE",
+  "endpoint": "/customer/deleteCustomer",
+  "description": "Deactivate/delete a customer.",
+  "parameters": [],
+  "requiresAuth": true,
+  "requestBody": {
+    "schema": "DeleteCustomerDTO",
+    "required": true
+  },
+  "response": {
+    "type": "object",
+    "properties": {
+      "result": "object"
+    }
+  }
+}

@@ -604,5 +604,68 @@
         "required": false
       }
     }
+  },
+  "CloneUserDTO": {
+    "type": "object",
+    "properties": {
+      "sourceUsername": {
+        "type": "string",
+        "description": "Source username to clone from",
+        "required": true
+      },
+      "targetUsername": {
+        "type": "string",
+        "description": "Target username to clone to",
+        "required": true
+      }
+    }
+  },
+  "DsUserSession": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User ID",
+        "required": false
+      },
+      "username": {
+        "type": "string",
+        "description": "Username",
+        "required": false
+      },
+      "token": {
+        "type": "string",
+        "description": "Session token",
+        "required": false
+      },
+      "roles": {
+        "type": "array",
+        "description": "User roles",
+        "items": {
+          "type": "string"
+        },
+        "required": false
+      }
+    }
+  },
+  "DeleteCustomerDTO": {
+    "type": "object",
+    "properties": {
+      "documentId": {
+        "type": "string",
+        "description": "Document ID of customer to delete",
+        "required": true
+      },
+      "documentType": {
+        "type": "string",
+        "description": "Document type",
+        "required": true
+      },
+      "reason": {
+        "type": "string",
+        "description": "Reason for deletion",
+        "required": false
+      }
+    }
   }
 } 

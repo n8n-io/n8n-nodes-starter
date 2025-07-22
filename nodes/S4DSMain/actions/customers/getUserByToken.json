@@ -1,0 +1,23 @@
+{
+  "name": "getUserByToken",
+  "method": "GET",
+  "endpoint": "/customer/userByToken",
+  "description": "Get user information by token.",
+  "parameters": [
+    {
+      "name": "userFromRequest",
+      "in": "query",
+      "type": "object",
+      "schema": "DsUserSession",
+      "required": true,
+      "description": "User session information"
+    }
+  ],
+  "requiresAuth": true,
+  "response": {
+    "type": "object",
+    "properties": {
+      "user": "object"
+    }
+  }
+}

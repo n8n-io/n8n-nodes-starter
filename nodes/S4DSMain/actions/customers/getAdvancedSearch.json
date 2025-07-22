@@ -1,0 +1,34 @@
+{
+  "name": "getAdvancedSearch",
+  "method": "GET",
+  "endpoint": "/customer/advancedSearch",
+  "description": "Perform advanced search for customers.",
+  "parameters": [
+    {
+      "name": "query",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Search query"
+    },
+    {
+      "name": "languaje",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Language preference"
+    }
+  ],
+  "requiresAuth": true,
+  "response": {
+    "type": "object",
+    "properties": {
+      "results": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

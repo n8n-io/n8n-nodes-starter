@@ -1,0 +1,122 @@
+{
+  "name": "getOffSyncCustomers",
+  "method": "GET",
+  "endpoint": "/customer/offSync",
+  "description": "Get customers that are out of sync.",
+  "parameters": [
+    {
+      "name": "quantity",
+      "in": "query",
+      "type": "integer",
+      "required": false,
+      "description": "Number of customers to retrieve (default: 100)",
+      "default": 100
+    },
+    {
+      "name": "documentType",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Document type filter"
+    },
+    {
+      "name": "documentId",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Document ID filter"
+    },
+    {
+      "name": "country",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Country filter"
+    },
+    {
+      "name": "internalCode",
+      "in": "query",
+      "type": "integer",
+      "required": false,
+      "description": "Internal code filter"
+    },
+    {
+      "name": "registrationStartDate",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Registration start date filter"
+    },
+    {
+      "name": "registrationEndDate",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Registration end date filter"
+    },
+    {
+      "name": "campaign",
+      "in": "query",
+      "type": "integer",
+      "required": false,
+      "description": "Campaign filter"
+    },
+    {
+      "name": "customerStatus",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Customer status filter"
+    },
+    {
+      "name": "customerType",
+      "in": "query",
+      "type": "integer",
+      "required": false,
+      "description": "Customer type filter"
+    },
+    {
+      "name": "sponsorDocument",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Sponsor document filter"
+    },
+    {
+      "name": "sponsorDocumentType",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Sponsor document type filter"
+    },
+    {
+      "name": "returnParamsList",
+      "in": "query",
+      "type": "array",
+      "required": false,
+      "description": "List of parameters to return",
+      "items": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "commercialStatus",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Commercial status filter"
+    }
+  ],
+  "requiresAuth": true,
+  "response": {
+    "type": "object",
+    "properties": {
+      "customers": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

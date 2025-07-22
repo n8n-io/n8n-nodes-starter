@@ -28,6 +28,42 @@
       {
         "name": "updateCustomer",
         "file": "actions/customers/updateCustomer.json"
+      },
+      {
+        "name": "cloneUsername",
+        "file": "actions/customers/cloneUsername.json"
+      },
+      {
+        "name": "getDocumentIdByAutocomplete",
+        "file": "actions/customers/getDocumentIdByAutocomplete.json"
+      },
+      {
+        "name": "getOffSyncCustomers",
+        "file": "actions/customers/getOffSyncCustomers.json"
+      },
+      {
+        "name": "getUserByToken",
+        "file": "actions/customers/getUserByToken.json"
+      },
+      {
+        "name": "getOrdersByCustomer",
+        "file": "actions/customers/getOrdersByCustomer.json"
+      },
+      {
+        "name": "customerInfo",
+        "file": "actions/customers/customerInfo.json"
+      },
+      {
+        "name": "getConsultantInformation",
+        "file": "actions/customers/getConsultantInformation.json"
+      },
+      {
+        "name": "inactiveCustomer",
+        "file": "actions/customers/inactiveCustomer.json"
+      },
+      {
+        "name": "getAdvancedSearch",
+        "file": "actions/customers/getAdvancedSearch.json"
       }
     ]
   }

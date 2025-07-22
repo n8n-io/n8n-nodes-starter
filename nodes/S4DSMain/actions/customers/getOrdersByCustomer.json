@@ -1,0 +1,76 @@
+{
+  "name": "getOrdersByCustomer",
+  "method": "GET",
+  "endpoint": "/customer/orders",
+  "description": "Get orders by customer.",
+  "parameters": [
+    {
+      "name": "documentId",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Document ID filter"
+    },
+    {
+      "name": "documentType",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Document type filter"
+    },
+    {
+      "name": "orderStardDate",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Order start date filter"
+    },
+    {
+      "name": "orderEndDate",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Order end date filter"
+    },
+    {
+      "name": "orderCampaign",
+      "in": "query",
+      "type": "integer",
+      "required": false,
+      "description": "Order campaign filter"
+    },
+    {
+      "name": "quantity",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Quantity filter"
+    },
+    {
+      "name": "orderStatus",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Order status filter"
+    },
+    {
+      "name": "orderType",
+      "in": "query",
+      "type": "string",
+      "required": false,
+      "description": "Order type filter"
+    }
+  ],
+  "requiresAuth": true,
+  "response": {
+    "type": "object",
+    "properties": {
+      "orders": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}
