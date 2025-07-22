@@ -1,0 +1,29 @@
+{
+  "name": "getCustomerByDocument",
+  "method": "GET",
+  "endpoint": "/customer/specificCustomer",
+  "description": "Get customer information by document ID and type.",
+  "parameters": [
+    {
+      "name": "documentId",
+      "type": "string",
+      "required": false,
+      "description": "Document ID of the customer.",
+      "in": "query"
+    },
+    {
+      "name": "documentType",
+      "type": "string",
+      "required": false,
+      "description": "Type of document (e.g., CC, CE, NIT).",
+      "in": "query"
+    }
+  ],
+  "requiresAuth": true,
+  "response": {
+    "type": "object",
+    "properties": {
+      "customer": "object"
+    }
+  }
+} 

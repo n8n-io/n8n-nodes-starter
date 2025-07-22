@@ -1,6 +1,14 @@
+// If you see type errors for 'fs' or 'path', install @types/node as a dev dependency.
+// npm install --save-dev @types/node
 import { INodeProperties, NodePropertyTypes } from 'n8n-workflow';
-import * as apiDefinitions from './api-definitions.json';
 import * as dtoDefinitions from './dto-definitions.json';
+// Remove fs and path imports
+// Import all service JSON files directly
+import generateToken from './actions/authentication/generateToken.json';
+import getProductCount from './actions/products/getProductCount.json';
+import getCustomerByDocument from './actions/customers/getCustomerByDocument.json';
+import createCustomer from './actions/customers/createCustomer.json';
+import updateCustomer from './actions/customers/updateCustomer.json';
 
 export interface ApiDefinition {
 	method: string;
@@ -42,10 +50,30 @@ export interface DtoDefinition {
 	properties: Record<string, DtoProperty>;
 }
 
+// Build static API definitions object
+const staticApiDefinitions: Record<string, Record<string, ApiDefinition>> = {
+  authentication: {
+    generateToken: generateToken as ApiDefinition,
+  },
+  products: {
+    getProductCount: getProductCount as ApiDefinition,
+  },
+  customers: {
+    getCustomerByDocument: getCustomerByDocument as ApiDefinition,
+    createCustomer: createCustomer as ApiDefinition,
+    updateCustomer: updateCustomer as ApiDefinition,
+  },
+};
+
 export class ApiHelper {
-	static getApiDefinitions(): Record<string, Record<string, ApiDefinition>> {
-		return apiDefinitions as any;
-	}
+  // Return the static API definitions
+  static getApiDefinitions(): Record<string, Record<string, ApiDefinition>> {
+    return staticApiDefinitions;
+  }
+  // Return a single API definition
+  static getApiDefinition(group: string, service: string): ApiDefinition | null {
+    return staticApiDefinitions[group]?.[service] || null;
+  }
 
 	static getResources(): INodeProperties[] {
 		const definitions = this.getApiDefinitions();
@@ -257,11 +285,6 @@ export class ApiHelper {
 			.replace(/([A-Z])/g, ' $1')
 			.replace(/^./, str => str.toUpperCase())
 			.trim();
-	}
-
-	static getApiDefinition(resource: string, operation: string): ApiDefinition | null {
-		const definitions = this.getApiDefinitions();
-		return definitions[resource]?.[operation] || null;
 	}
 
 	static getDtoDefinitions(): Record<string, DtoDefinition> {

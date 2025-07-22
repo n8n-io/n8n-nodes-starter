@@ -1,98 +1,34 @@
 {
   "authentication": {
-    "generateToken": {
-      "method": "POST",
-      "endpoint": "/login/generateToken",
-      "description": "Generate authentication token using credentials",
-      "parameters": [],
-      "requiresAuth": false,
-      "response": {
-        "type": "object",
-        "properties": {
-          "token": "string",
-          "token_type": "string",
-          "expires_in": "number"
-        }
+    "services": [
+      {
+        "name": "generateToken",
+        "file": "actions/authentication/generateToken.json"
       }
-    }
+    ]
   },
   "products": {
-    "getProductCount": {
-      "method": "GET",
-      "endpoint": "/product/count",
-      "description": "Get the total count of products",
-      "parameters": [],
-      "requiresAuth": true,
-      "response": {
-        "type": "object",
-        "properties": {
-          "count": "number"
-        }
+    "services": [
+      {
+        "name": "getProductCount",
+        "file": "actions/products/getProductCount.json"
       }
-    }
+    ]
   },
   "customers": {
-    "getCustomerByDocument": {
-      "method": "GET",
-      "endpoint": "/customer/specificCustomer",
-      "description": "Get customer information by document ID and type",
-      "parameters": [
-        {
-          "name": "documentId",
-          "type": "string",
-          "required": false,
-          "description": "Document ID of the customer",
-          "in": "query"
-        },
-        {
-          "name": "documentType",
-          "type": "string",
-          "required": false,
-          "description": "Type of document (e.g., CC, CE, NIT)",
-          "in": "query"
-        }
-      ],
-      "requiresAuth": true,
-      "response": {
-        "type": "object",
-        "properties": {
-          "customer": "object"
-        }
-      }
-    },
-    "createCustomer": {
-      "method": "POST",
-      "endpoint": "/customer",
-      "description": "Create a new customer",
-      "parameters": [],
-      "requiresAuth": true,
-      "requestBody": {
-        "schema": "SetNewCustomerDTO",
-        "required": true
+    "services": [
+      {
+        "name": "getCustomerByDocument",
+        "file": "actions/customers/getCustomerByDocument.json"
       },
-      "response": {
-        "type": "object",
-        "properties": {
-          "customer": "object"
-        }
-      }
-    },
-    "updateCustomer": {
-      "method": "PATCH",
-      "endpoint": "/customer",
-      "description": "Update an existing customer",
-      "parameters": [],
-      "requiresAuth": true,
-      "requestBody": {
-        "schema": "SetNewCustomerDTO",
-        "required": true
+      {
+        "name": "createCustomer",
+        "file": "actions/customers/createCustomer.json"
       },
-      "response": {
-        "type": "object",
-        "properties": {
-          "result": "object"
-        }
+      {
+        "name": "updateCustomer",
+        "file": "actions/customers/updateCustomer.json"
       }
-    }
+    ]
   }
 } 

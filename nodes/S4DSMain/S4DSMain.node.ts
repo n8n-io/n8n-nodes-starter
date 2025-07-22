@@ -45,8 +45,8 @@ export class S4DSMain implements INodeType {
 				const resource = this.getNodeParameter('resource', i) as string;
 				const operation = this.getNodeParameter('operation', i) as string;
 				
-				// Obtener definición de la API
-				const apiDefinition = ApiHelper.getApiDefinition(resource, operation);
+				// Get API definition (now async)
+				const apiDefinition = await ApiHelper.getApiDefinition(resource, operation);
 				if (!apiDefinition) {
 					throw new Error(`API definition not found for resource: ${resource}, operation: ${operation}`);
 				}

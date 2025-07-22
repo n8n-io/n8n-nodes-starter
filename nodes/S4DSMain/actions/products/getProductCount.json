@@ -1,0 +1,14 @@
+{
+  "name": "getProductCount",
+  "method": "GET",
+  "endpoint": "/product/count",
+  "description": "Get the total count of products.",
+  "parameters": [],
+  "requiresAuth": true,
+  "response": {
+    "type": "object",
+    "properties": {
+      "count": "number"
+    }
+  }
+} 

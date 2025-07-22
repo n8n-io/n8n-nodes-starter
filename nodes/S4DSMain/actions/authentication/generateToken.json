@@ -1,0 +1,16 @@
+{
+  "name": "generateToken",
+  "method": "POST",
+  "endpoint": "/login/generateToken",
+  "description": "Generate authentication token using credentials.",
+  "parameters": [],
+  "requiresAuth": false,
+  "response": {
+    "type": "object",
+    "properties": {
+      "token": "string",
+      "token_type": "string",
+      "expires_in": "number"
+    }
+  }
+} 
