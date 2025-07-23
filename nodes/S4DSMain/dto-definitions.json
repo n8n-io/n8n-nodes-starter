@@ -608,14 +608,29 @@
   "CloneUserDTO": {
     "type": "object",
     "properties": {
-      "sourceUsername": {
+      "username": {
         "type": "string",
         "description": "Source username to clone from",
         "required": true
       },
-      "targetUsername": {
+      "newUsername": {
         "type": "string",
-        "description": "Target username to clone to",
+        "description": "New username to clone to",
+        "required": true
+      },
+      "displayName": {
+        "type": "string",
+        "description": "Display name for the cloned user",
+        "required": true
+      },
+      "password": {
+        "type": "string",
+        "description": "Password for the new user",
+        "required": true
+      },
+      "confirmPassword": {
+        "type": "string",
+        "description": "Password confirmation",
         "required": true
       }
     }
