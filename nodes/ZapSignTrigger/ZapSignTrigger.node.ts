@@ -137,8 +137,8 @@ export class ZapSignTrigger implements INodeType {
 
 				const credentials = await this.getCredentials('zapSignApi');
 				const baseUrl = credentials.environment === 'sandbox' 
-					? 'https://sandbox.api.zapsign.com' 
-					: 'https://api.zapsign.com';
+					? 'https://sandbox.api.zapsign.co' 
+					: 'https://api.zapsign.co';
 
 				try {
 					const response = await this.helpers.request({
@@ -171,8 +171,8 @@ export class ZapSignTrigger implements INodeType {
 
 				const credentials = await this.getCredentials('zapSignApi');
 				const baseUrl = credentials.environment === 'sandbox' 
-					? 'https://sandbox.api.zapsign.com' 
-					: 'https://api.zapsign.com';
+					? 'https://sandbox.api.zapsign.co' 
+					: 'https://api.zapsign.co';
 
 				const body = {
 					url: webhookUrl,
@@ -209,8 +209,8 @@ export class ZapSignTrigger implements INodeType {
 				if (webhookData.webhookId !== undefined) {
 					const credentials = await this.getCredentials('zapSignApi');
 					const baseUrl = credentials.environment === 'sandbox' 
-						? 'https://sandbox.api.zapsign.com' 
-						: 'https://api.zapsign.com';
+						? 'https://sandbox.api.zapsign.co' 
+						: 'https://api.zapsign.co';
 
 					try {
 						await this.helpers.request({

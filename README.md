@@ -2,7 +2,7 @@
 
 This is an n8n community node that lets you use ZapSign's digital signature API in your n8n workflows.
 
-[ZapSign](https://zapsign.com) is a digital signature platform that enables you to create, send, and manage legally binding electronic signatures for your documents.
+[ZapSign](https://zapsign.co) is a digital signature platform that enables you to create, send, and manage legally binding electronic signatures for your documents.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
@@ -38,7 +38,7 @@ RUN cd /usr/local/lib/node_modules/n8n && npm install n8n-nodes-zapsign
 
 You'll need to set up ZapSign API credentials to use this node:
 
-1. Sign up for a [ZapSign account](https://zapsign.com)
+1. Sign up for a [ZapSign account](https://zapsign.co)
 2. Go to your ZapSign dashboard
 3. Navigate to API settings and generate an API key
 4. In n8n, create new ZapSign API credentials with:
@@ -135,8 +135,8 @@ Additional security features:
 The node assumes the following ZapSign API structure:
 
 ```
-Base URL: https://api.zapsign.com (Production)
-         https://sandbox.api.zapsign.com (Sandbox)
+Base URL: https://api.zapsign.co (Production)
+         https://sandbox.api.zapsign.co (Sandbox)
 
 Documents:
 - POST /v1/documents - Create document
@@ -182,7 +182,7 @@ All errors are properly formatted and include helpful context for debugging.
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
 - [ZapSign API Documentation](https://docs.zapsign.com.br/)
-- [ZapSign Website](https://zapsign.com)
+- [ZapSign Website](https://zapsign.co)
 
 ## Support
 
@@ -192,7 +192,7 @@ For support with this community node:
 2. Review the [n8n community forum](https://community.n8n.io/)
 3. Open an issue on this repository
 
-For ZapSign-specific questions, contact ZapSign support at support@zapsign.com
+For ZapSign-specific questions, contact ZapSign support at support@zapsign.co
 
 ## License
 

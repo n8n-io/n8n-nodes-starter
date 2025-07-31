@@ -53,7 +53,7 @@ export class ZapSignApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: '={{$credentials.environment === "sandbox" ? "https://sandbox.api.zapsign.com" : "https://api.zapsign.com"}}',
+			baseURL: '={{$credentials.environment === "sandbox" ? "https://sandbox.api.zapsign.co" : "https://api.zapsign.co"}}',
 			url: '/v1/me',
 			method: 'GET',
 		},
