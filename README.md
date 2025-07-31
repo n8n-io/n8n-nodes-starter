@@ -135,8 +135,8 @@ Additional security features:
 The node assumes the following ZapSign API structure:
 
 ```
-Base URL: https://api.zapsign.co (Production)
-         https://sandbox.api.zapsign.co (Sandbox)
+Base URL: https://api.zapsign.com.br/ (Production)
+         https://sandbox.api.zapsign.com.br/ (Sandbox)
 
 Documents:
 - POST /v1/documents - Create document
