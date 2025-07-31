@@ -1,48 +1,212 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n-nodes-zapsign
 
-# n8n-nodes-starter
+This is an n8n community node that lets you use ZapSign's digital signature API in your n8n workflows.
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](https://n8n.io). It includes the node linter and other dependencies.
+[ZapSign](https://zapsign.com) is a digital signature platform that enables you to create, send, and manage legally binding electronic signatures for your documents.
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+[n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
-If you would like your node to be available on n8n cloud you can also [submit your node for verification](https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/).
+## Installation
 
-## Prerequisites
+Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
-You need the following installed on your development machine:
+### Community Nodes (Recommended)
 
-* [git](https://git-scm.com/downloads)
-* Node.js and npm. Minimum version Node 20. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-  ```
-  npm install n8n -g
-  ```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+1. Go to **Settings > Community Nodes**.
+2. Select **Install**.
+3. Enter `n8n-nodes-zapsign` in **Enter npm package name**.
+4. Agree to the [risks](https://docs.n8n.io/integrations/community-nodes/risks/) of using community nodes.
+5. Select **Install**.
 
-## Using this starter
+After installing the node, you can use it like any other node in n8n.
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+### Manual Installation
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-   ```
-   git clone https://github.com/<your organization>/<your-repo-name>.git
-   ```
-3. Run `npm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+To get started install the package in your n8n root directory:
 
-## More information
+```bash
+npm install n8n-nodes-zapsign
+```
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+For Docker-based deployments add the following line before the font installation command in your n8n Dockerfile:
+
+```dockerfile
+RUN cd /usr/local/lib/node_modules/n8n && npm install n8n-nodes-zapsign
+```
+
+## Credentials
+
+You'll need to set up ZapSign API credentials to use this node:
+
+1. Sign up for a [ZapSign account](https://zapsign.com)
+2. Go to your ZapSign dashboard
+3. Navigate to API settings and generate an API key
+4. In n8n, create new ZapSign API credentials with:
+   - **API Key**: Your ZapSign API key
+   - **Environment**: Choose between Production or Sandbox
+
+## Operations
+
+### ZapSign Node
+
+The ZapSign node supports the following resources and operations:
+
+#### Document
+- **Create**: Upload and create a new document
+- **Get**: Retrieve document details
+- **Get All**: List all documents
+- **Send**: Send document for signature
+- **Cancel**: Cancel a document
+- **Download**: Download a signed document
+
+#### Signer
+- **Add**: Add a signer to a document
+- **Get All**: Get all signers of a document
+- **Remove**: Remove a signer from a document
+- **Update**: Update signer information
+
+#### Template
+- **Get All**: List all available templates
+- **Create Document From Template**: Create a new document from a template
+
+#### Webhook
+- **Create**: Create a webhook for event notifications
+- **Get All**: List all webhooks
+- **Delete**: Delete a webhook
+
+### ZapSign Trigger Node
+
+The ZapSign Trigger node allows you to start workflows when ZapSign events occur:
+
+#### Supported Events
+- **Document Created**: When a document is created
+- **Document Sent**: When a document is sent for signature
+- **Document Viewed**: When a document is viewed by a signer
+- **Document Signed**: When a document is signed by any signer
+- **Document Completed**: When all signers have signed the document
+- **Document Cancelled**: When a document is cancelled
+- **Document Expired**: When a document expires
+- **Signer Added**: When a signer is added to a document
+- **Signer Signed**: When a specific signer signs
+- **Signer Declined**: When a signer declines to sign
+
+## Example Workflows
+
+### Document Signature Workflow
+
+1. **HTTP Request**: Receive document upload request
+2. **ZapSign**: Create document with uploaded file
+3. **ZapSign**: Add signers to the document
+4. **ZapSign**: Send document for signature
+5. **ZapSign Trigger**: Wait for document completion
+6. **Email**: Send notification when document is signed
+
+### Template-Based Document Creation
+
+1. **Schedule Trigger**: Run daily
+2. **Google Sheets**: Get contract data
+3. **ZapSign**: Create document from template
+4. **ZapSign**: Add signers from spreadsheet
+5. **ZapSign**: Send for signature
+6. **Slack**: Notify team
+
+### Webhook Event Processing
+
+1. **ZapSign Trigger**: Listen for document events
+2. **Switch**: Route based on event type
+3. **Database**: Update document status
+4. **Email**: Send appropriate notifications
+
+## Authentication Methods
+
+ZapSign supports multiple authentication methods for signers:
+
+- **Email**: Simple email verification
+- **SMS**: SMS code verification
+- **WhatsApp**: WhatsApp code verification
+
+Additional security features:
+- **Document Authentication**: Require ID document upload
+- **Facial Recognition**: Verify identity through facial recognition
+- **Biometric GOV+**: Government database validation (Brazil)
+
+## API Endpoints Structure
+
+The node assumes the following ZapSign API structure:
+
+```
+Base URL: https://api.zapsign.com (Production)
+         https://sandbox.api.zapsign.com (Sandbox)
+
+Documents:
+- POST /v1/documents - Create document
+- GET /v1/documents - List documents
+- GET /v1/documents/{id} - Get document
+- POST /v1/documents/{id}/send - Send document
+- POST /v1/documents/{id}/cancel - Cancel document
+- GET /v1/documents/{id}/download - Download document
+
+Signers:
+- POST /v1/documents/{id}/signers - Add signer
+- GET /v1/documents/{id}/signers - List signers
+- PUT /v1/documents/{id}/signers/{email} - Update signer
+- DELETE /v1/documents/{id}/signers/{email} - Remove signer
+
+Templates:
+- GET /v1/templates - List templates
+- POST /v1/documents/from-template - Create from template
+
+Webhooks:
+- POST /v1/webhooks - Create webhook
+- GET /v1/webhooks - List webhooks
+- DELETE /v1/webhooks/{id} - Delete webhook
+```
+
+## Error Handling
+
+The node includes comprehensive error handling:
+
+- **Authentication errors**: Invalid API key or expired tokens
+- **Rate limiting**: Automatic retry with exponential backoff
+- **Validation errors**: Missing required fields or invalid data
+- **Network errors**: Connection timeouts and retries
+
+All errors are properly formatted and include helpful context for debugging.
+
+## Compatibility
+
+- n8n v0.187.0 and above
+- Node.js v18.10 and above
+
+## Resources
+
+- [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
+- [ZapSign API Documentation](https://docs.zapsign.com.br/)
+- [ZapSign Website](https://zapsign.com)
+
+## Support
+
+For support with this community node:
+
+1. Check the [ZapSign API documentation](https://docs.zapsign.com.br/)
+2. Review the [n8n community forum](https://community.n8n.io/)
+3. Open an issue on this repository
+
+For ZapSign-specific questions, contact ZapSign support at support@zapsign.com
 
 ## License
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+[MIT](https://github.com/zapsign/n8n-nodes-zapsign/blob/main/LICENSE.md)
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Changelog
+
+### 1.0.0
+- Initial release
+- Support for Document, Signer, Template, and Webhook operations
+- ZapSign Trigger node for webhook events
+- Complete authentication and error handling
+- Support for both Production and Sandbox environments
