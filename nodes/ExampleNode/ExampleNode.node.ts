@@ -39,6 +39,7 @@ export class ExampleNode implements INodeType {
 	// You can make async calls and use `await`.
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const items = this.getInputData();
+		const itemCount = items.length;
 
 		let item: INodeExecutionData;
 		let myString: string;
@@ -46,7 +47,7 @@ export class ExampleNode implements INodeType {
 		// Iterates over all input items and add the key "myString" with the
 		// value the parameter "myString" resolves to.
 		// (This could be a different value for each item in case it contains an expression)
-		for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
+		for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
 			try {
 				myString = this.getNodeParameter('myString', itemIndex, '') as string;
 				item = items[itemIndex];
@@ -56,7 +57,7 @@ export class ExampleNode implements INodeType {
 				// This node should never fail but we want to showcase how
 				// to handle errors.
 				if (this.continueOnFail()) {
-					items.push({ json: this.getInputData(itemIndex)[0].json, error, pairedItem: itemIndex });
+					items[itemIndex].error = error;
 				} else {
 					// Adding `itemIndex` allows other workflows to handle this error
 					if (error.context) {
