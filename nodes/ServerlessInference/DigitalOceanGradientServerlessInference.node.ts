@@ -3,9 +3,9 @@ import { INodeType, INodeTypeDescription, NodeConnectionType } from 'n8n-workflo
 import { textFields, textOperations } from './TextDescription';
 
 const baseURL = 'https://inference.do-ai.run/v1';
-const version = '1.0.3';
+const version = '1.0.5';
 
-export class ServerlessInference implements INodeType {
+export class DigitalOceanGradientServerlessInference implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'DigitalOcean Gradient™ AI Serverless Inference',
 		documentationUrl: 'https://gradientai-sdk.digitalocean.com/api/resources/chat/subresources/completions/methods/create',
