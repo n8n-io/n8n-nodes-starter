@@ -3,6 +3,7 @@ import { INodeType, INodeTypeDescription, NodeConnectionType } from 'n8n-workflo
 import { textFields, textOperations } from './TextDescription';
 
 const baseURL = 'https://inference.do-ai.run/v1';
+const version = '1.0.2';
 
 export class ServerlessInference implements INodeType {
 	description: INodeTypeDescription = {
@@ -31,7 +32,7 @@ export class ServerlessInference implements INodeType {
             headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
-				'User-Agent': 'Gradient/n8n/1.0.1',
+				'User-Agent': `Gradient/n8n/${version}`,
 			},
 		},
 		properties: [
