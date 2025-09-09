@@ -21,7 +21,7 @@ export class ServerlessInference implements INodeType {
 		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
-				name: 'digitalOceanServerlessInference',
+				name: 'digitalOceanServerlessInferenceApi',
 				required: true,
 			},
 		],

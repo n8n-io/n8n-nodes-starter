@@ -4,9 +4,9 @@ import {
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class DigitalOceanServerlessInference implements ICredentialType {
-	name = 'digitalOceanServerlessInference';
-	displayName = 'DigitalOcean Gradient™ AI Platform';
+export class DigitalOceanServerlessInferenceApi implements ICredentialType {
+	name = 'digitalOceanServerlessInferenceApi';
+	displayName = 'DigitalOcean Gradient™ AI Platform API';
 	documentationUrl = 'https://docs.digitalocean.com/products/gradient-ai-platform/how-to/use-serverless-inference/';
 	properties: INodeProperties[] = [
 		{
