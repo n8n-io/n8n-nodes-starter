@@ -1,0 +1,19 @@
+{
+	"node": "n8n-nodes-base.ServerlessInference",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Utility"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://docs.digitalocean.com/products/gradient-ai-platform/how-to/use-serverless-inference/#create"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://docs.digitalocean.com/products/gradient-ai-platform/how-to/use-serverless-inference/"
+			}
+		]
+	},
+	"alias": ["DoServerlessInference"]
+}

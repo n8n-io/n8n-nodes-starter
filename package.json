@@ -1,19 +1,19 @@
 {
-  "name": "n8n-nodes-<...>",
-  "version": "0.1.0",
-  "description": "",
+  "name": "n8n-node-digitalocean-gradient-serverless-inference",
+  "version": "1.0.0",
+  "description": "This is an n8n community node for the DigitalOcean Gradient™ AI Platform Serverless Inference API",
   "keywords": [
     "n8n-community-node-package"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/digitalocean-labs/n8n-node-gradient-serverless-inference",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "DigitalOcean",
+    "email": "support@digitalocean.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+    "url": "https://github.com/digitalocean-labs/n8n-node-gradient-serverless-inference.git"
   },
   "engines": {
     "node": ">=20.15"
@@ -33,12 +33,10 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/DigitalOceanServerlessInference.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
+      "dist/nodes/ServerlessInferenceNode/ServerlessInference.node.js"
     ]
   },
   "devDependencies": {
