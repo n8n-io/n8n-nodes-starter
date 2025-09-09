@@ -2,6 +2,7 @@ import {
 	IAuthenticateGeneric,
 	ICredentialType,
 	INodeProperties,
+	ICredentialTestRequest,
 } from 'n8n-workflow';
 
 export class DigitalOceanServerlessInferenceApi implements ICredentialType {
@@ -30,6 +31,14 @@ export class DigitalOceanServerlessInferenceApi implements ICredentialType {
 			headers: {
 				Authorization: '={{"Bearer " + $credentials.key}}',
 			},
+		},
+	};
+
+	// This block tells how this credential can be tested
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: 'https://inference.do-ai.run/v1',
+			url: '/models',
 		},
 	};
 }

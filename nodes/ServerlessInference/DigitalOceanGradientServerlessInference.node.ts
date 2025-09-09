@@ -3,7 +3,7 @@ import { INodeType, INodeTypeDescription, NodeConnectionType } from 'n8n-workflo
 import { textFields, textOperations } from './TextDescription';
 
 const baseURL = 'https://inference.do-ai.run/v1';
-const version = '1.0.2';
+const version = '1.0.3';
 
 export class ServerlessInference implements INodeType {
 	description: INodeTypeDescription = {
