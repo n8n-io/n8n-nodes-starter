@@ -1,6 +1,6 @@
 {
-  "name": "n8n-node-digitalocean-gradient-serverless-inference",
-  "version": "1.0.0",
+  "name": "@digitalocean/n8n-nodes-digitalocean-gradient-serverless-inference",
+  "version": "1.0.1",
   "description": "This is an n8n community node for the DigitalOcean Gradient™ AI Platform Serverless Inference API",
   "keywords": [
     "n8n-community-node-package"
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/digitalocean-labs/n8n-node-gradient-serverless-inference.git"
+    "url": "git+https://github.com/digitalocean-labs/n8n-node-gradient-serverless-inference.git"
   },
   "engines": {
     "node": ">=20.15"
@@ -49,5 +49,8 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/digitalocean-labs/n8n-node-gradient-serverless-inference/issues"
   }
 }
