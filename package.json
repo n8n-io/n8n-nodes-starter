@@ -1,6 +1,6 @@
 {
   "name": "@digitalocean/n8n-nodes-digitalocean-gradient-serverless-inference",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This is an n8n community node for the DigitalOcean Gradient™ AI Platform Serverless Inference API",
   "keywords": [
     "n8n-community-node-package"
@@ -33,10 +33,10 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/DigitalOceanServerlessInference.credentials.js"
+      "dist/credentials/DigitalOceanServerlessInferenceApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ServerlessInferenceNode/ServerlessInference.node.js"
+      "dist/nodes/ServerlessInference/DigitalOceanGradientServerlessInference.node.ts"
     ]
   },
   "devDependencies": {
