@@ -1,17 +1,17 @@
 {
-	"node": "n8n-nodes-base.httpbin",
+	"node": "n8n-nodes-example",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": ["Development", "Developer Tools"],
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "http://httpbin.org/#/Auth/get_bearer"
+				"url": "https://github.com/org/repo?tab=readme-ov-file#credentials"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "http://httpbin.org/"
+				"url": "https://github.com/org/repo?tab=readme-ov-file"
 			}
 		]
 	}
