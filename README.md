@@ -58,7 +58,7 @@ Before you begin, install the following on your development machine:
 
 ### Required
 
-- **[Node.js](https://nodejs.org/)** (v20 or higher) and npm
+- **[Node.js](https://nodejs.org/)** (v22 or higher) and npm
   - Linux/Mac/WSL: Install via [nvm](https://github.com/nvm-sh/nvm)
   - Windows: Follow [Microsoft's NodeJS guide](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows)
 - **[git](https://git-scm.com/downloads)**
@@ -228,7 +228,7 @@ Run `npm run lint:fix` to automatically fix most common issues. For remaining er
 
 ### TypeScript errors
 
-Make sure you're using Node.js v20 or higher and have run `npm install` to get all type definitions.
+Make sure you're using Node.js v22 or higher and have run `npm install` to get all type definitions.
 
 ## Resources
 
