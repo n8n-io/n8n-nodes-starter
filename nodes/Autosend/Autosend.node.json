@@ -1,0 +1,18 @@
+{
+	"node": "n8n-nodes-base.autosend",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Communication"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://docs.autosend.com/"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://docs.autosend.com/"
+			}
+		]
+	}
+}

@@ -1,19 +1,19 @@
 {
-	"name": "n8n-nodes-<...>",
+	"name": "n8n-nodes-autosend",
 	"version": "0.1.0",
-	"description": "",
+	"description": "n8n node for Autosend - Send emails and manage contacts",
 	"license": "MIT",
 	"homepage": "",
 	"keywords": [
 		"n8n-community-node-package"
 	],
 	"author": {
-		"name": "",
-		"email": ""
+		"name": "Your Name",
+		"email": "your.email@example.com"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/<...>/n8n-nodes-<...>.git"
+		"url": "https://github.com/codebuster22/autosend-n8n-nodes.git"
 	},
 	"scripts": {
 		"build": "n8n-node build",
@@ -31,10 +31,12 @@
 		"n8nNodesApiVersion": 1,
 		"strict": true,
 		"credentials": [
+			"dist/credentials/AutosendApi.credentials.js",
 			"dist/credentials/GithubIssuesApi.credentials.js",
 			"dist/credentials/GithubIssuesOAuth2Api.credentials.js"
 		],
 		"nodes": [
+			"dist/nodes/Autosend/Autosend.node.js",
 			"dist/nodes/GithubIssues/GithubIssues.node.js",
 			"dist/nodes/Example/Example.node.js"
 		]
