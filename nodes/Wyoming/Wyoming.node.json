@@ -1,0 +1,16 @@
+{
+	"node": "n8n-nodes-wyoming.wyoming",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["AI"],
+	"subcategories": {
+		"AI": ["Audio"]
+	},
+	"resources": {
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/ikarpovich/n8n-nodes-wyoming"
+			}
+		]
+	}
+}
