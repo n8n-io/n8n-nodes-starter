@@ -1,2 +1,10 @@
 dist
 node_modules
+.vscode
+.env
+.DS_Store
+.idea
+*.log
+.tmp
+.claude/
+CLAUDE.md
