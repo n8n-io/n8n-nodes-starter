@@ -33,12 +33,17 @@
 	],
 	"n8n": {
 		"n8nNodesApiVersion": 1,
-		"strict": true,
-		"credentials": [],
-		"nodes": []
+		"strict": false,
+		"credentials": [
+			"dist/credentials/WyomingApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Wyoming/Wyoming.node.js"
+		]
 	},
 	"devDependencies": {
 		"@n8n/node-cli": "*",
+		"@types/node": "^24.10.1",
 		"eslint": "9.32.0",
 		"prettier": "3.6.2",
 		"release-it": "^19.0.4",
