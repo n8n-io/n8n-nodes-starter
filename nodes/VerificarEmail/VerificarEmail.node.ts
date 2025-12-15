@@ -1,7 +1,7 @@
 import { INodeType, INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
 export class VerificarEmail implements INodeType {
     description: INodeTypeDescription = {
-        displayName: 'Verificacion de Email',
+        displayName: 'Verificacion de Validez de Email',
         name: 'verificarEmail',
         icon: 'file:mail-mail-email.svg',
         group: ['transform'],
@@ -15,12 +15,12 @@ export class VerificarEmail implements INodeType {
         outputs: [NodeConnectionTypes.Main],
         credentials: [
             {
-                name: 'VerificarEmailApi',
+                name: 'verificarEmailApi',
                 required: true,
             },
         ],
         requestDefaults: {
-            baseURL: 'https://api.emailable.com/v1/verify',
+            baseURL: 'https://api.emailable.com/v1', // Solo el dominio.
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
@@ -35,8 +35,11 @@ export class VerificarEmail implements INodeType {
                 required: true,
                 default: 'dylanbohorquez77@gmail.com',
                 routing: {
-                    qs: {
-                        email: '={{$value}}',
+                    request: {
+                        url: '/verify',
+                        qs: {
+                            email: '={{$value}}',
+                        },
                     },
                 },
             },

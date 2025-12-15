@@ -1,15 +1,15 @@
 {
-	"name": "n8n-nodes-<...>",
+	"name": "n8n-nodes-VerificarEmail",
 	"version": "0.1.0",
-	"description": "",
+	"description": "Nodo de n8n para verificar la validez de correos electrónicos utilizando una API externa (emailable.com)",
 	"license": "MIT",
 	"homepage": "",
 	"keywords": [
 		"n8n-community-node-package"
 	],
 	"author": {
-		"name": "",
-		"email": ""
+		"name": "Dylan Bohorquez",
+		"email": "dylan.bohorquez@agrosoft.com.ec"
 	},
 	"repository": {
 		"type": "git",
@@ -31,12 +31,10 @@
 		"n8nNodesApiVersion": 1,
 		"strict": true,
 		"credentials": [
-			"dist/credentials/GithubIssuesApi.credentials.js",
-			"dist/credentials/GithubIssuesOAuth2Api.credentials.js"
+			"dist/credentials/VerificarEmailApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/GithubIssues/GithubIssues.node.js",
-			"dist/nodes/Example/Example.node.js"
+			"dist/nodes/VerificarEmail/VerificarEmail.node.js"
 		]
 	},
 	"devDependencies": {
