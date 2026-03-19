@@ -170,13 +170,28 @@ Before publishing:
 
 ### 10. Publish to npm
 
-Publish your package to make it available to the n8n community:
+Publishing is handled automatically by the included GitHub Actions workflow ([.github/workflows/publish.yml](.github/workflows/publish.yml)). It runs on every version tag push and publishes to npm with a provenance attestation — a requirement for n8n community nodes starting May 1, 2026.
+
+#### One-time setup
+
+Configure npm to trust this repository's GitHub Actions workflow so it can publish on your behalf. Log in to [npmjs.com](https://npmjs.com), open your package settings, and under **Publish access → Trusted Publishers** add a publisher with:
+
+- **Repository owner**: your GitHub username or org
+- **Repository name**: your repo name
+- **Workflow name**: `publish.yml`
+
+No token or secret needs to be stored in GitHub — the workflow uses GitHub's OIDC token instead.
+
+> [!NOTE]
+> If you prefer a traditional npm token, create a Granular Access Token on npmjs.com and store it as `NPM_TOKEN` in your repository's Actions secrets. See the comments at the top of `.github/workflows/publish.yml` for details.
+
+#### Releasing a new version
 
 ```bash
-npm publish
+npm run release
 ```
 
-Learn more about [publishing to npm](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+This lints, builds, prompts for a version bump, updates the changelog, commits, tags, and pushes — which triggers the workflow to publish to npm.
 
 ### 11. Submit for Verification (Optional)
 
@@ -201,14 +216,14 @@ Get your node verified for n8n Cloud:
 
 This starter includes several npm scripts to streamline development:
 
-| Script                | Description                                                      |
-| --------------------- | ---------------------------------------------------------------- |
-| `npm run dev`         | Start n8n with your node and watch for changes (runs `n8n-node dev`) |
-| `npm run build`       | Compile TypeScript to JavaScript for production (runs `n8n-node build`) |
-| `npm run build:watch` | Build in watch mode (auto-rebuild on changes)                    |
-| `npm run lint`        | Check your code for errors and style issues (runs `n8n-node lint`) |
+| Script                | Description                                                                 |
+| --------------------- | --------------------------------------------------------------------------- |
+| `npm run dev`         | Start n8n with your node and watch for changes (runs `n8n-node dev`)        |
+| `npm run build`       | Compile TypeScript to JavaScript for production (runs `n8n-node build`)     |
+| `npm run build:watch` | Build in watch mode (auto-rebuild on changes)                               |
+| `npm run lint`        | Check your code for errors and style issues (runs `n8n-node lint`)          |
 | `npm run lint:fix`    | Automatically fix linting issues when possible (runs `n8n-node lint --fix`) |
-| `npm run release`     | Create a new release (runs `n8n-node release`)                   |
+| `npm run release`     | Create a new release (runs `n8n-node release`)                              |
 
 > [!TIP]
 > These scripts use the [@n8n/node-cli](https://www.npmjs.com/package/@n8n/node-cli) under the hood. You can also run CLI commands directly, e.g., `npx n8n-node dev`.
