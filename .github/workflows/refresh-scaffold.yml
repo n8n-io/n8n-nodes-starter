@@ -1,0 +1,72 @@
+# Refreshes this repo's example scaffolding (nodes/Example, nodes/GithubIssues,
+# credentials/, icons/, and shared tooling config) from the templates that the
+# installed `@n8n/node-cli` version ships via `n8n-node new`.
+#
+# Manual only: trigger from the Actions tab when you want to check whether the
+# starter has drifted from the CLI's current templates. If anything changed,
+# this opens a PR for review instead of committing directly.
+
+name: Refresh Scaffold
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh scaffold from n8n-node new
+        run: node scripts/refresh-scaffold.mjs
+
+      - name: Format synced files
+        run: npx prettier --write nodes credentials icons tsconfig.json eslint.config.mjs .prettierrc.js .vscode/launch.json package.json
+
+      - name: Check for changes
+        id: diff
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open pull request
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          branch="refresh-scaffold/${{ github.run_id }}"
+          git checkout -b "$branch"
+          git commit -m "Refresh scaffold from n8n-node new"
+          git push origin "$branch"
+
+          gh pr create \
+            --title "Refresh scaffold from n8n-node new" \
+            --base "${{ github.event.repository.default_branch }}" \
+            --head "$branch" \
+            --body "Regenerates \`nodes/Example\`, \`nodes/GithubIssues\`, \`credentials/\`, \`icons/\`, and shared tooling config (\`tsconfig.json\`, eslint/prettier config, \`.vscode/launch.json\`, \`package.json\` scripts) from the templates the installed \`@n8n/node-cli\` version ships via \`n8n-node new\`. Review the diff before merging — files outside this scaffold (README, LICENSE, other workflows, package.json identity fields) are untouched."
+
+      - name: No changes
+        if: steps.diff.outputs.changed == 'false'
+        run: echo "Scaffold already matches the current n8n-node new templates — nothing to do."
