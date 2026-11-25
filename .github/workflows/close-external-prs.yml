@@ -1,0 +1,48 @@
+name: Close external PRs
+
+# This repository is generated from `npm create @n8n/node` and accepts no
+# direct changes. Every pull request is closed with a comment pointing to the
+# CLI templates in n8n-io/n8n, except:
+#   - `dependabot[bot]`: dependency pins are owned here.
+#   - `n8n-assistant[bot]`: the scaffold refresh PR from n8n-io/n8n.
+#   - PRs labelled `maintainer-pr`: an n8n maintainer changing a file this
+#     repository owns (README, CHANGELOG, workflows that are not templated).
+#
+# The label works because of the `reopened` trigger: a maintainer adds
+# `maintainer-pr` to the closed PR, then reopens it, and this run skips it.
+# External contributors cannot add labels, so they cannot use this path.
+#
+# pull_request_target runs the copy of this file on master with a write token.
+# It checks out nothing and runs no code from the PR; PR data reaches the shell
+# only through `env:`.
+
+on:
+  pull_request_target: # zizmor: ignore[dangerous-triggers] nothing from the PR is checked out or run; PR data reaches the shell only through env
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+
+concurrency:
+  group: close-external-prs-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  close:
+    name: Close PR
+    if: >-
+      github.event.pull_request.user.login != 'dependabot[bot]' &&
+      github.event.pull_request.user.login != 'n8n-assistant[bot]' &&
+      !contains(github.event.pull_request.labels.*.name, 'maintainer-pr')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Close with a pointer to the CLI templates
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          BODY: |
+            Thanks for the contribution. This repository is generated from `npm create @n8n/node` and accepts no direct changes. Please open your pull request against the templates in https://github.com/n8n-io/n8n/tree/master/packages/@n8n/node-cli/src/template/templates. The change reaches this repository automatically after the next n8n release. Bug reports are welcome in the n8n-io/n8n issue tracker and on https://community.n8n.io.
+
+            n8n maintainers: for a change to a file this repository owns, add the `maintainer-pr` label and reopen the pull request.
+        run: gh pr close "$PR_URL" --comment "$BODY"

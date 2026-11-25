@@ -1,0 +1,85 @@
+name: Auto-merge scaffold refresh
+
+# Approves and auto-merges the scaffold refresh PR that
+# `util-refresh-starter-scaffold.yml` in n8n-io/n8n opens as
+# `n8n-assistant[bot]` on the fixed branch `refresh-scaffold`. The merge waits
+# for the checks the master ruleset requires (`build`, `Verify scaffold`,
+# `CLA Check`); this workflow only approves and arms auto-merge.
+#
+# The approval comes from the release helper app, a different identity from
+# the PR author, so it satisfies a one-approval ruleset. On `synchronize` the
+# job approves the new head again.
+#
+# A refresh that changes `.github/workflows/*` is not auto-merged: it gets the
+# `needs-human-review` label and one comment, and a human merges it.
+#
+# pull_request_target is needed for the org secrets. It checks out nothing
+# and runs no code from the PR, so the PR cannot influence what runs here.
+
+on:
+  pull_request_target: # zizmor: ignore[dangerous-triggers] nothing from the PR is checked out or run; PR data reaches the shell only through env
+    types: [opened, synchronize, reopened]
+
+permissions: {}
+
+concurrency:
+  group: automerge-scaffold-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    name: Check refresh PR
+    if: >-
+      github.event.pull_request.user.login == 'n8n-assistant[bot]' &&
+      github.event.pull_request.head.ref == 'refresh-scaffold' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write
+    outputs:
+      touches_workflows: ${{ steps.files.outputs.touches_workflows }}
+    steps:
+      - name: Check for workflow file changes
+        id: files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          TOUCHES="$(gh pr view "$PR_NUMBER" --json files --jq '[.files[].path] | any(startswith(".github/workflows/"))')"
+          echo "touches_workflows=$TOUCHES" >> "$GITHUB_OUTPUT"
+
+      - name: Hand over to a human
+        if: steps.files.outputs.touches_workflows == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BODY: >-
+            Auto-merge skipped: this refresh changes files under
+            `.github/workflows/`. A human reviews and merges it.
+        run: |
+          gh pr edit "$PR_NUMBER" --add-label needs-human-review
+          # One comment per PR, not one per push.
+          if ! gh pr view "$PR_NUMBER" --json comments --jq '.comments[].body' | grep -qF 'Auto-merge skipped'; then
+            gh pr comment "$PR_NUMBER" --body "$BODY"
+          fi
+
+  approve-and-automerge:
+    name: Approve and set automerge
+    needs: gate
+    if: needs.gate.outputs.touches_workflows != 'true'
+    # Ceiling for the called workflow, whose job declares exactly these. The
+    # approval and the merge themselves use the release helper app token.
+    permissions:
+      contents: write
+      pull-requests: write
+    uses: n8n-io/github-actions/.github/workflows/approve-and-set-automerge.yml@8fe337080c0386a17ce3c857b61db606c9430f4b
+    with:
+      pull-request-number: ${{ github.event.pull_request.number }}
+      enable-automerge: true
+    # Only the two secrets the called workflow reads, not `inherit`.
+    secrets:
+      N8N_RELEASE_HELPER_APP_ID: ${{ secrets.N8N_RELEASE_HELPER_APP_ID }}
+      N8N_RELEASE_HELPER_PRIVATE_KEY: ${{ secrets.N8N_RELEASE_HELPER_PRIVATE_KEY }}
