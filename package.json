@@ -1,19 +1,19 @@
 {
-	"name": "n8n-nodes-<...>",
+	"name": "n8n-nodes-starter",
 	"version": "0.1.0",
-	"description": "",
+	"description": "Starter repository for building n8n community nodes",
 	"license": "MIT",
-	"homepage": "",
+	"homepage": "https://docs.n8n.io/connect/create-nodes/overview",
 	"keywords": [
 		"n8n-community-node-package"
 	],
 	"author": {
-		"name": "",
-		"email": ""
+		"name": "n8n",
+		"email": "example@example.com"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/<...>/n8n-nodes-<...>.git"
+		"url": "https://github.com/n8n-io/n8n-nodes-starter.git"
 	},
 	"scripts": {
 		"build": "n8n-node build",
