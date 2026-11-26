@@ -4,6 +4,12 @@
 
 This starter repository helps you build custom integrations for [n8n](https://n8n.io). It includes example nodes, credentials, the node linter, and all the tooling you need to get started.
 
+## This repository is generated
+
+This starter is the committed output of `npm create @n8n/node`. The files the CLI templates own are listed in [`.github/scaffold-manifest.json`](.github/scaffold-manifest.json) and are regenerated after every n8n release. Manual edits to them are overwritten, and pull requests to this repository are closed automatically.
+
+To change the starter, contribute to the templates in [n8n-io/n8n](https://github.com/n8n-io/n8n/tree/master/packages/@n8n/node-cli/src/template/templates). `AGENTS.md` and `.agents/` come from those templates too.
+
 ## Quick Start
 
 > [!TIP]

@@ -1,0 +1,128 @@
+name: Notify scaffold failure
+
+# Tells people in Slack when the scaffold refresh PR (`refresh-scaffold`,
+# opened by `n8n-assistant[bot]`) does not merge on its own. Two reasons this
+# lives in its own workflow:
+#   - `ci.yml` is template-owned and cannot carry a notify job.
+#   - GitHub's "auto-merge disabled" notice goes to the app that enabled
+#     auto-merge, not to people.
+#
+# Triggers
+#   - workflow_run: one of the checks on the refresh PR, or the auto-merge
+#     workflow itself, failed. `workflows:` matches top-level `name:` values;
+#     renaming any of those workflows silently disarms this trigger.
+#   - schedule (09:00 UTC, Mon-Fri): stale sweep for a refresh PR open longer
+#     than 24 h, which covers a merge blocked for any other reason.
+#   - workflow_dispatch with `dry_run`: posts a test message to check the
+#     Slack path, even when no refresh PR is open.
+#
+# Slack messages go through n8n's own script (`.github/scripts/slack/notify.mjs`
+# in n8n-io/n8n), never through a third-party action.
+
+on:
+  workflow_run: # zizmor: ignore[dangerous-triggers] nothing from the triggering run is checked out or reaches a shell; only its URL and name are read, through env
+    workflows: ['CI', 'Verify scaffold', 'Auto-merge scaffold refresh']
+    types: [completed]
+  schedule:
+    - cron: '0 9 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Post a test message to Slack, even when no refresh PR is open'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  pull-requests: read
+
+# Never cancel: a cancelled run is a lost alert.
+concurrency:
+  group: notify-scaffold-failure-${{ github.event.workflow_run.id || github.run_id }}
+  cancel-in-progress: false
+
+env:
+  SLACK_CHANNEL: '#alerts-developer-platforms'
+
+jobs:
+  failed-check:
+    name: Report failed check
+    if: >-
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.conclusion == 'failure' &&
+      github.event.workflow_run.head_branch == 'refresh-scaffold' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout Slack script from n8n-io/n8n
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: n8n-io/n8n
+          ref: master
+          path: n8n
+          sparse-checkout: .github/scripts/slack
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+
+      - name: Post to Slack
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          SLACK_TOKEN: ${{ secrets.QBOT_SLACK_TOKEN }}
+          RUN_URL: ${{ github.event.workflow_run.html_url }}
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+        run: |
+          TEXT="<${RUN_URL}|Starter refresh PR cannot merge: ${WORKFLOW_NAME} failed on refresh-scaffold>"
+          PR_URL="$(gh pr list --head refresh-scaffold --state open --json url --jq '.[0].url // empty')"
+          if [ -n "$PR_URL" ]; then
+            TEXT="${TEXT}"$'\n'"${PR_URL}"
+          fi
+          node n8n/.github/scripts/slack/notify.mjs --channel "$SLACK_CHANNEL" --text "$TEXT"
+
+  stale-pr:
+    name: Report stale refresh PR
+    if: github.event_name == 'schedule' || inputs.dry_run
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout Slack script from n8n-io/n8n
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: n8n-io/n8n
+          ref: master
+          path: n8n
+          sparse-checkout: .github/scripts/slack
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+
+      - name: Post to Slack
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          SLACK_TOKEN: ${{ secrets.QBOT_SLACK_TOKEN }}
+          DRY_RUN: ${{ inputs.dry_run == true }}
+        run: |
+          PR="$(gh pr list --state open --head refresh-scaffold --json number,url,createdAt,labels --jq '.[0] // empty')"
+          TEXT=''
+          if [ -n "$PR" ]; then
+            URL="$(jq -r '.url' <<<"$PR")"
+            CREATED="$(jq -r '.createdAt | fromdateiso8601' <<<"$PR")"
+            AGE=$(( $(date +%s) - CREATED ))
+            if [ "$AGE" -gt 86400 ]; then
+              DAYS=$(( AGE / 86400 ))
+              UNIT='days'; [ "$DAYS" -eq 1 ] && UNIT='day'
+              TEXT="<${URL}|Starter refresh PR has been open for ${DAYS} ${UNIT}>"
+              if jq -e 'any(.labels[]; .name == "needs-human-review")' <<<"$PR" >/dev/null; then
+                TEXT="${TEXT}: workflow files changed, needs a human merge"
+              fi
+            fi
+          fi
+          if [ "$DRY_RUN" = 'true' ]; then
+            TEXT="dry run: ${TEXT:-no stale starter refresh PR}"
+          fi
+          if [ -z "$TEXT" ]; then
+            echo 'No stale starter refresh PR; nothing to post.'
+            exit 0
+          fi
+          node n8n/.github/scripts/slack/notify.mjs --channel "$SLACK_CHANNEL" --text "$TEXT"
