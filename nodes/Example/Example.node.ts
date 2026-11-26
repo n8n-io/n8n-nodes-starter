@@ -14,7 +14,7 @@ export class Example implements INodeType {
 		group: ['input'],
 		version: [1],
 		subtitle: '={{$parameter["myString"]}}',
-		description: 'Basic Example Node',
+		description: 'Basic Example Node (hand edit)',
 		defaults: {
 			name: 'Example',
 		},
