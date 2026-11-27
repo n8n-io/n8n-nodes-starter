@@ -1,5 +1,5 @@
 {
-	"cliVersion": "0.58.7",
+	"cliVersion": "0.58.8",
 	"templates": [
 		"programmatic/example",
 		"declarative/github-issues"
